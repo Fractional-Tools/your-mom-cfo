@@ -25,7 +25,7 @@ export default function HowItWorks() {
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-lg mx-auto">
         <Link
-          to="/"
+          to="/slides"
           className="text-xs text-muted-foreground hover:text-foreground transition-colors"
         >
           ← Back to slides
@@ -86,7 +86,7 @@ export default function HowItWorks() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
-            to="/"
+            to="/slides"
             className="flex items-center justify-center gap-2 bg-warm-glow text-foreground rounded-full px-6 py-3 text-sm font-body hover:bg-muted transition-colors"
           >
             View your slides

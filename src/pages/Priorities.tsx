@@ -40,7 +40,7 @@ export default function Priorities() {
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
           <Link
-            to="/"
+            to="/slides"
             className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             ← Back to slides

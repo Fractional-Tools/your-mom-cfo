@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { Presentation, LayoutDashboard, Play } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
@@ -18,14 +18,7 @@ export default function Profile() {
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Link>
+        <div className="flex items-center justify-center mb-12">
           <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto dark:invert" />
         </div>
 
@@ -42,7 +35,32 @@ export default function Profile() {
             className="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-warm-glow"
           />
           <h1 className="font-display text-3xl text-foreground mb-1">Alex Reyes</h1>
-          <p className="text-muted-foreground text-sm">Fractional Chief Product Officer</p>
+          <p className="text-muted-foreground text-sm mb-5">Fractional Chief Product Officer</p>
+
+          {/* Launch options */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/slides"
+              className="flex items-center gap-2 text-sm font-body bg-warm-glow hover:bg-muted text-foreground rounded-full px-5 py-2.5 transition-colors"
+            >
+              <Play className="w-4 h-4" />
+              View Slides
+            </Link>
+            <Link
+              to="/present"
+              className="flex items-center gap-2 text-sm font-body bg-foreground hover:bg-foreground/90 text-background rounded-full px-5 py-2.5 transition-colors"
+            >
+              <Presentation className="w-4 h-4" />
+              Present
+            </Link>
+            <Link
+              to="/dashboard"
+              className="flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              Dashboard
+            </Link>
+          </div>
         </motion.div>
 
         {/* Stats */}
