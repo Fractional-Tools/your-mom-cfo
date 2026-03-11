@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface WorkBalanceSlideProps {
   offHoursPct: number;
@@ -127,6 +128,10 @@ export default function WorkBalanceSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="See which clients are pushing you into off-hours." />
+          )}
 
           {isPaid && (
             <DeepDive

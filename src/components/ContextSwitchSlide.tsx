@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface ContextSwitchSlideProps {
   hoursLostPerWeek: number;
@@ -106,6 +107,10 @@ export default function ContextSwitchSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="Get a plan to cut your switch tax in half." />
+          )}
 
           {isPaid && (
             <DeepDive

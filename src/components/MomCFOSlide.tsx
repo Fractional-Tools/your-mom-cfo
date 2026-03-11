@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface MomCFOSlideProps {
   targetRevenue: number;
@@ -107,6 +108,10 @@ export default function MomCFOSlide({
           >
             Keep going. I'm proud of you.
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="See exactly how to pace your Q3 to stay ahead." />
+          )}
 
           {isPaid && (
             <DeepDive

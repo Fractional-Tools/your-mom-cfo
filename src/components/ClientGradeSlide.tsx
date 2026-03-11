@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface ClientGrade {
   name: string;
@@ -103,6 +104,10 @@ export default function ClientGradeSlide({ clients, isPaid = false }: ClientGrad
           >
             {getMomTake()}
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="Get specific advice on your toughest client." />
+          )}
 
           {isPaid && (
             <DeepDive

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface Client {
   name: string;
@@ -149,6 +150,10 @@ export default function ClientValueSlide({ clients, isPaid = false }: ClientValu
           >
             {getMomTake()}
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="See what a rate increase would mean for your year." />
+          )}
 
           {isPaid && (
             <DeepDive

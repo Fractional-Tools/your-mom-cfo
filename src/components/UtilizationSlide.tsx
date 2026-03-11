@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
+import UpgradeNudge from "./UpgradeNudge";
 
 interface UtilizationSlideProps {
   currentRate: number;
@@ -122,6 +123,10 @@ export default function UtilizationSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {!isPaid && (
+            <UpgradeNudge hint="See your utilization trend and how you compare to other fractionals." />
+          )}
 
           {isPaid && (
             <DeepDive
