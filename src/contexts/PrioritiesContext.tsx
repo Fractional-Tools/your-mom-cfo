@@ -1,5 +1,18 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import type { MetricId } from "@/types/metrics";
+
+const DEFAULT_RANKED: MetricId[] = [
+  "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation", "growth", "engagement"
+];
+
+function loadFromStorage<T>(key: string, fallback: T): T {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 interface PrioritiesContextType {
   favorites: MetricId[];
@@ -12,10 +25,11 @@ interface PrioritiesContextType {
 const PrioritiesContext = createContext<PrioritiesContextType | null>(null);
 
 export function PrioritiesProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites] = useState<MetricId[]>([]);
-  const [rankedPriorities, setRankedPriorities] = useState<MetricId[]>([
-    "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation", "growth", "engagement"
-  ]);
+  const [favorites, setFavorites] = useState<MetricId[]>(() => loadFromStorage("ft-favorites", []));
+  const [rankedPriorities, setRankedPriorities] = useState<MetricId[]>(() => loadFromStorage("ft-ranked", DEFAULT_RANKED));
+
+  useEffect(() => { localStorage.setItem("ft-favorites", JSON.stringify(favorites)); }, [favorites]);
+  useEffect(() => { localStorage.setItem("ft-ranked", JSON.stringify(rankedPriorities)); }, [rankedPriorities]);
 
   const toggleFavorite = (id: MetricId) => {
     setFavorites((prev) => {
