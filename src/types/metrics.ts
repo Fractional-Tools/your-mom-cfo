@@ -1,4 +1,4 @@
-export type MetricId = "revenue" | "utilization" | "switching" | "balance" | "client-value" | "client-health";
+export type MetricId = "revenue" | "utilization" | "switching" | "balance" | "client-value" | "client-health" | "vacation";
 
 export interface MetricInfo {
   id: MetricId;
