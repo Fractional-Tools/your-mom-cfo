@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Priorities from "./pages/Priorities.tsx";
 import HowItWorks from "./pages/HowItWorks.tsx";
 import Actions from "./pages/Actions.tsx";
+import Present from "./pages/Present.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
