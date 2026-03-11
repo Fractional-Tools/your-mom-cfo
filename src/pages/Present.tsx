@@ -106,6 +106,7 @@ const Present = () => {
   };
 
   const slides = [
+    <IntroSlide key="s-intro" />,
     <MomCFOSlide key="s0" targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
     <UtilizationSlide key="s1" currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />,
     <ContextSwitchSlide key="s2" hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />,
