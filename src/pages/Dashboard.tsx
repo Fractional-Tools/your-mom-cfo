@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
+import { useSettings } from "@/hooks/use-settings";
 import { ALL_METRICS, type MetricId } from "@/types/metrics";
 import ProfileFooter from "@/components/ProfileFooter";
 
@@ -389,6 +390,8 @@ const tabs: { id: Tab; label: string }[] = [
 
 // ─── Main Dashboard ───
 export default function Dashboard() {
+  const { settings } = useSettings();
+  const firstName = settings.name.split(" ")[0];
   const [activeTab, setActiveTab] = useState<Tab>("metrics");
   const { theme, setTheme } = useTheme();
 
@@ -400,7 +403,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0 dark:invert" />
             <div>
-              <h1 className="font-display text-2xl text-foreground">Your Dashboard</h1>
+              <h1 className="font-display text-2xl text-foreground">{firstName}'s Dashboard</h1>
               <p className="text-sm text-muted-foreground mt-0.5">July 1 · Halftime</p>
             </div>
           </div>
