@@ -14,6 +14,7 @@ export default function Settings() {
   const [vacationWeeks, setVacationWeeks] = useState(String(settings.vacationWeeks));
   const [conferences, setConferences] = useState(String(settings.conferences));
   const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
+  const [targetBillRate, setTargetBillRate] = useState(String(settings.targetBillRate));
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
