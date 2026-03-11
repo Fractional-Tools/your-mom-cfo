@@ -17,8 +17,8 @@ import EngagementSlide from "@/components/EngagementSlide";
 import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
-const STORY_TITLES = [
-  "Meet Alex",
+const getStoryTitles = (firstName: string) => [
+  `Meet ${firstName}`,
   "The Big Picture",
   "Time Allocation",
   "Context Switching",
@@ -149,7 +149,7 @@ const Present = () => {
           <div className="flex items-center gap-3 bg-foreground/5 backdrop-blur-md rounded-full px-6 py-2.5 border border-border/50">
             <span className="text-xs font-mono text-muted-foreground">{currentSlide + 1}/{totalSlides}</span>
             <span className="w-px h-4 bg-border" />
-            <span className="text-sm font-medium text-foreground">{STORY_TITLES[currentSlide]}</span>
+            <span className="text-sm font-medium text-foreground">{getStoryTitles(settings.name.split(" ")[0])[currentSlide]}</span>
           </div>
         </motion.div>
       </AnimatePresence>
