@@ -16,6 +16,7 @@ export default function UtilizationSlide({
   period,
   billableHours,
   availableHours,
+  isPaid = false,
 }: UtilizationSlideProps) {
   const delta = currentRate - priorRate;
   const isUp = delta >= 0;
