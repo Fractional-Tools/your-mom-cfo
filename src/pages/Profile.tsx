@@ -34,7 +34,7 @@ export default function Profile() {
           className="flex flex-col items-center text-center mb-10"
         >
           <img
-            src={profilePhoto}
+            src={getAvatarSrc(settings.avatarId)}
             alt="Profile photo"
             className="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-warm-glow"
           />

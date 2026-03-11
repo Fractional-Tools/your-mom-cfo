@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import profilePhoto from "@/assets/profile-photo.jpg";
 import ftLogo from "@/assets/ft-logo.png";
 import { useSettings } from "@/hooks/use-settings";
+import { getAvatarSrc } from "@/lib/avatars";
 
 export default function IntroSlide() {
   const { settings } = useSettings();
