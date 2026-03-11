@@ -9,8 +9,8 @@ import ClientGradeSlide from "@/components/ClientGradeSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaid, setIsPaid] = useState(false);
 
-  // Slide 1 data
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
@@ -21,103 +21,72 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background">
+      {/* Plan toggle */}
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-warm-glow rounded-full px-4 py-2 shadow-sm">
+        <button
+          onClick={() => setIsPaid(false)}
+          className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
+            !isPaid
+              ? "bg-foreground text-background font-medium"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Free
+        </button>
+        <button
+          onClick={() => setIsPaid(true)}
+          className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
+            isPaid
+              ? "bg-foreground text-background font-medium"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Pro
+        </button>
+      </div>
+
       <AnimatePresence mode="wait">
         {currentSlide === 0 && (
-          <motion.div
-            key="slide-0"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
-            <MomCFOSlide
-              targetRevenue={340000}
-              currentRevenue={currentRevenue}
-              dayOfYear={182}
-              totalDays={365}
-            />
+          <motion.div key="slide-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} />
           </motion.div>
         )}
         {currentSlide === 1 && (
-          <motion.div
-            key="slide-1"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
-            <UtilizationSlide
-              currentRate={68}
-              priorRate={61}
-              period="month"
-              billableHours={109}
-              availableHours={160}
-            />
+          <motion.div key="slide-1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <UtilizationSlide currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} />
           </motion.div>
         )}
         {currentSlide === 2 && (
-          <motion.div
-            key="slide-2"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
-            <ContextSwitchSlide
-              hoursLostPerWeek={6.5}
-              avgSwitchesPerDay={4}
-              activeClients={3}
-              costPerHour={200}
-            />
+          <motion.div key="slide-2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} />
           </motion.div>
         )}
         {currentSlide === 3 && (
-          <motion.div
-            key="slide-3"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
-            <WorkBalanceSlide
-              offHoursPct={28}
-              weekendHours={6}
-              eveningHours={8}
-              totalHoursThisWeek={48}
-            />
+          <motion.div key="slide-3" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <WorkBalanceSlide offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} />
           </motion.div>
         )}
         {currentSlide === 4 && (
-          <motion.div
-            key="slide-4"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
+          <motion.div key="slide-4" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <ClientValueSlide
               clients={[
                 { name: "Acme Corp", revenue: 12000, hoursPerMonth: 48 },
                 { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
                 { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
               ]}
+              isPaid={isPaid}
             />
           </motion.div>
         )}
         {currentSlide === 5 && (
-          <motion.div
-            key="slide-5"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-          >
+          <motion.div key="slide-5" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <ClientGradeSlide
               clients={[
                 { name: "Acme Corp", grade: "A", paysOnTime: true, steadyWork: true, lowSwitchCost: true },
                 { name: "Bright Labs", grade: "B", paysOnTime: true, steadyWork: true, lowSwitchCost: false },
                 { name: "Cedar Health", grade: "C", paysOnTime: false, steadyWork: true, lowSwitchCost: false },
               ]}
+              isPaid={isPaid}
             />
           </motion.div>
         )}

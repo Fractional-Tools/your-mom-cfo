@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface UtilizationSlideProps {
-  currentRate: number; // e.g. 72 for 72%
-  priorRate: number; // previous period for comparison
+  currentRate: number;
+  priorRate: number;
   period: "week" | "month" | "quarter";
   billableHours: number;
   availableHours: number;
+  isPaid?: boolean;
 }
 
 export default function UtilizationSlide({
@@ -14,6 +16,7 @@ export default function UtilizationSlide({
   period,
   billableHours,
   availableHours,
+  isPaid = false,
 }: UtilizationSlideProps) {
   const delta = currentRate - priorRate;
   const isUp = delta >= 0;
@@ -119,6 +122,19 @@ export default function UtilizationSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${availableHours - billableHours} unbilled hours this period`,
+                `Utilization trending ${priorRate < currentRate ? "up" : "down"} over the last 3 periods`,
+                `Industry benchmark for fractionals is 65–75%`,
+              ]}
+              recommendation={currentRate < 65
+                ? "Consider reaching out to past clients for project work to fill gaps."
+                : "You're in the sweet spot. Protect admin time — don't push past 80%."}
+            />
+          )}
         </div>
       </motion.div>
     </div>

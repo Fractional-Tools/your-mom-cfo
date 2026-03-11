@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface ContextSwitchSlideProps {
   hoursLostPerWeek: number;
   avgSwitchesPerDay: number;
   activeClients: number;
   costPerHour: number;
+  isPaid?: boolean;
 }
 
 export default function ContextSwitchSlide({
@@ -12,6 +14,7 @@ export default function ContextSwitchSlide({
   avgSwitchesPerDay,
   activeClients,
   costPerHour,
+  isPaid = false,
 }: ContextSwitchSlideProps) {
   const weeklyDollarCost = Math.round(hoursLostPerWeek * costPerHour);
   const monthlyCost = weeklyDollarCost * 4;
@@ -103,6 +106,17 @@ export default function ContextSwitchSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${avgSwitchesPerDay} switches/day across ${activeClients} clients`,
+                `Each switch costs ~23 minutes of refocus time`,
+                `Batching client days could recover ${Math.round(hoursLostPerWeek * 0.6)}+ hrs/week`,
+              ]}
+              recommendation="Dedicate full days to single clients. Even 2 batch days per week can cut your switch tax in half."
+            />
+          )}
         </div>
       </motion.div>
     </div>

@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface WorkBalanceSlideProps {
-  offHoursPct: number; // % of total hours worked outside 9-5 M-F
+  offHoursPct: number;
   weekendHours: number;
   eveningHours: number;
   totalHoursThisWeek: number;
+  isPaid?: boolean;
 }
 
 export default function WorkBalanceSlide({
@@ -12,6 +14,7 @@ export default function WorkBalanceSlide({
   weekendHours,
   eveningHours,
   totalHoursThisWeek,
+  isPaid = false,
 }: WorkBalanceSlideProps) {
   const coreHours = totalHoursThisWeek - weekendHours - eveningHours;
 
@@ -124,6 +127,19 @@ export default function WorkBalanceSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${eveningHours} evening hours and ${weekendHours} weekend hours this period`,
+                `${totalHoursThisWeek}h total — ${totalHoursThisWeek > 40 ? `${totalHoursThisWeek - 40}h over a standard week` : "within a standard week"}`,
+                `Off-hours work has been ${offHoursPct > 20 ? "trending up" : "steady"} over 3 months`,
+              ]}
+              recommendation={offHoursPct > 25
+                ? "Block your calendar after 6pm. Move recurring client work into core hours — even if it means a harder conversation."
+                : "You're managing boundaries well. Keep your weekend blocks protected."}
+            />
+          )}
         </div>
       </motion.div>
     </div>
