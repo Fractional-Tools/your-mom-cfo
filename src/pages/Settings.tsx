@@ -164,6 +164,24 @@ export default function Settings() {
                 placeholder="2"
               />
             </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Target Bill Rate
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={targetBillRate}
+                  onChange={(e) => setTargetBillRate(e.target.value)}
+                  className={`${inputClass} pl-8`}
+                  placeholder="200"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">/hr</span>
+              </div>
+            </div>
           </div>
 
           <button
