@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface ContextSwitchSlideProps {
   hoursLostPerWeek: number;
   avgSwitchesPerDay: number;
   activeClients: number;
   costPerHour: number;
+  isPaid?: boolean;
 }
 
 export default function ContextSwitchSlide({
