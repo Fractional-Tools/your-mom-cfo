@@ -5,6 +5,7 @@ import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
+import ClientGradeSlide from "@/components/ClientGradeSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
