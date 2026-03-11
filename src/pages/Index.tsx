@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import ProfileFooter from "@/components/ProfileFooter";
+import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
@@ -31,7 +32,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 9;
+  const totalSlides = 10;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -98,26 +99,31 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {currentSlide === 0 && (
           <motion.div key="slide-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
+            <IntroSlide />
           </motion.div>
         )}
         {currentSlide === 1 && (
           <motion.div key="slide-1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <UtilizationSlide currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />
+            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 2 && (
           <motion.div key="slide-2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />
+            <UtilizationSlide currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 3 && (
           <motion.div key="slide-3" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <WorkBalanceSlide offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} tone={tone} />
+            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 4 && (
           <motion.div key="slide-4" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <WorkBalanceSlide offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
+        {currentSlide === 5 && (
+          <motion.div key="slide-5" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <ClientValueSlide
               clients={[
                 { name: "Acme Corp", revenue: 12000, hoursPerMonth: 48 },
@@ -128,8 +134,8 @@ const Index = () => {
             />
           </motion.div>
         )}
-        {currentSlide === 5 && (
-          <motion.div key="slide-5" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+        {currentSlide === 6 && (
+          <motion.div key="slide-6" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <ClientGradeSlide
               clients={[
                 { name: "Acme Corp", grade: "A", paysOnTime: true, steadyWork: true, lowSwitchCost: true },
@@ -140,18 +146,18 @@ const Index = () => {
             />
           </motion.div>
         )}
-        {currentSlide === 6 && (
-          <motion.div key="slide-6" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
-          </motion.div>
-        )}
         {currentSlide === 7 && (
           <motion.div key="slide-7" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <GrowthSlide capacityClients={1.24} currentClients={3} availableHoursPerWeek={20} avgHoursPerClient={16} isPaid={isPaid} tone={tone} />
+            <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 8 && (
           <motion.div key="slide-8" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <GrowthSlide capacityClients={1.24} currentClients={3} availableHoursPerWeek={20} avgHoursPerClient={16} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
+        {currentSlide === 9 && (
+          <motion.div key="slide-9" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <EngagementSlide
               clients={[
                 { name: "Acme Corp", months: 18, active: true },
