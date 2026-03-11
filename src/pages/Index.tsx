@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
+import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
