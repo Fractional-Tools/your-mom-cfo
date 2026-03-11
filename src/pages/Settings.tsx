@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check } from "lucide-react";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check, LogOut } from "lucide-react";
 import { useSettings, type Pronouns } from "@/hooks/use-settings";
+import { useAuth } from "@/hooks/use-auth";
 import type { StoryTone } from "@/types/tone";
 import { AVATARS } from "@/lib/avatars";
 import ftLogo from "@/assets/ft-logo.png";
