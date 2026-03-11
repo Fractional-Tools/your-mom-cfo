@@ -13,12 +13,12 @@ type Tab = "metrics" | "priorities" | "actions";
 
 // ─── Metrics Data ───
 const metrics = [
-  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead", slide: 0 },
-  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground", slide: 1 },
-  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind", slide: 2 },
-  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind", slide: 3 },
-  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead", slide: 4 },
-  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground", slide: 5 },
+  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead", slide: 1 },
+  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground", slide: 2 },
+  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind", slide: 3 },
+  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind", slide: 4 },
+  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead", slide: 5 },
+  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground", slide: 6 },
 ];
 
 // ─── Actions Data ───
@@ -128,7 +128,7 @@ function MetricsTab() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              onClick={() => navigate(`/?slide=${m.slide}`)}
+              onClick={() => navigate(`/slides?slide=${m.slide}`)}
               className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-3">
@@ -148,7 +148,7 @@ function MetricsTab() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.06, duration: 0.35 }}
-              onClick={() => navigate(`/?slide=${m.slide}`)}
+              onClick={() => navigate(`/slides?slide=${m.slide}`)}
               className="flex items-center justify-between bg-warm-glow rounded-xl px-5 py-4 cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.01] active:scale-[0.99] transition-all"
             >
               <div className="flex items-center gap-3">
@@ -171,7 +171,7 @@ function MetricsTab() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-            onClick={() => navigate(`/?slide=${primary.slide}`)}
+            onClick={() => navigate(`/slides?slide=${primary.slide}`)}
             className="bg-warm-glow rounded-2xl p-10 md:p-14 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 transition-all mb-4"
           >
             <p className="text-xs font-body text-muted-foreground uppercase tracking-widest mb-4">
@@ -191,7 +191,7 @@ function MetricsTab() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.1, duration: 0.35 }}
-                onClick={() => navigate(`/?slide=${m.slide}`)}
+                onClick={() => navigate(`/slides?slide=${m.slide}`)}
                 className="bg-warm-glow rounded-xl p-5 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-2">
