@@ -10,11 +10,11 @@ export default function Profile() {
 
   const stats = [
     { label: "Role", value: settings.jobTitle.replace("Fractional ", "") },
-    { label: "Experience", value: "2 years fractional" },
+    { label: "Experience", value: `${settings.yearsFractional} year${settings.yearsFractional !== 1 ? "s" : ""} fractional` },
     { label: "Clients / year", value: "4–6" },
     { label: "Current clients", value: `${settings.concurrentClients}` },
     { label: "Revenue goal", value: `$${Math.round(settings.revenueGoal / 1000)}k / yr` },
-    { label: "Time off", value: "4 weeks + 3 conferences" },
+    { label: "Time off", value: `${settings.vacationWeeks} weeks + ${settings.conferences} conference${settings.conferences !== 1 ? "s" : ""}` },
   ];
 
   return (
