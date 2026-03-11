@@ -445,6 +445,7 @@ export default function Dashboard() {
           {activeTab === "actions" && <ActionsTab />}
         </motion.div>
       </div>
+      <ProfileFooter />
     </div>
   );
 }
