@@ -100,7 +100,7 @@ export default function Profile() {
           <p className="text-sm text-muted-foreground leading-relaxed">
             {settings.name} works as a {settings.jobTitle.toLowerCase()}, partnering with companies
             to shape product strategy without the overhead of a full-time hire. Currently working
-            with {settings.concurrentClients} clients, bringing focused, senior leadership to each
+            with {settings.concurrentClients} clients, {pronoun.subject} brings focused, senior leadership to each
             engagement — helping teams ship faster and prioritize better.
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed mt-4">
