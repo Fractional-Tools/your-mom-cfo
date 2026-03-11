@@ -292,6 +292,14 @@ export default function Settings() {
             <Save className="w-4 h-4" />
             {saved ? "Saved ✓" : "Save Settings"}
           </button>
+
+          <button
+            onClick={() => { logout(); navigate("/"); }}
+            className="mt-4 w-full flex items-center justify-center gap-2 border border-border text-muted-foreground rounded-xl px-6 py-3 text-sm font-medium hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors mb-10"
+          >
+            <LogOut className="w-4 h-4" />
+            Log out
+          </button>
         </motion.div>
       </div>
     </div>
