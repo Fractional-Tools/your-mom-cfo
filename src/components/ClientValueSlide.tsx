@@ -12,7 +12,7 @@ interface ClientValueSlideProps {
   isPaid?: boolean;
 }
 
-export default function ClientValueSlide({ clients }: ClientValueSlideProps) {
+export default function ClientValueSlide({ clients, isPaid = false }: ClientValueSlideProps) {
   const sorted = [...clients].sort(
     (a, b) => b.revenue / b.hoursPerMonth - a.revenue / a.hoursPerMonth
   );
