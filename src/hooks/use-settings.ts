@@ -15,6 +15,7 @@ export interface AppSettings {
   tone: StoryTone;
   avatarId: string;
   pronouns: Pronouns;
+  profileTitle: string;
 }
 
 const STORAGE_KEY = "ft-settings";
