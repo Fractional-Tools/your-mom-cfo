@@ -25,7 +25,7 @@ export default function HowItWorks() {
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-lg mx-auto">
         <Link
-          to="/"
+          to="/slides"
           className="text-xs text-muted-foreground hover:text-foreground transition-colors"
         >
           ← Back to slides
