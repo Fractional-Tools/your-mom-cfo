@@ -24,6 +24,7 @@ const DEFAULTS: AppSettings = {
   conferences: 3,
   yearsFractional: 2,
   targetBillRate: 200,
+  tone: "balanced" as StoryTone,
 };
 
 function loadSettings(): AppSettings {
