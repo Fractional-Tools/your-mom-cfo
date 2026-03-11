@@ -311,6 +311,7 @@ export default function Dashboard() {
               ← Slides
             </Link>
           </div>
+        </div>
 
         {/* Tab switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 mb-8 w-fit">
