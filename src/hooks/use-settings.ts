@@ -32,6 +32,7 @@ const DEFAULTS: AppSettings = {
   tone: "balanced" as StoryTone,
   avatarId: "default",
   pronouns: "he",
+  profileTitle: "Your Fractional Report",
 };
 
 function loadSettings(): AppSettings {
