@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface Client {
   name: string;
@@ -11,9 +12,10 @@ interface Client {
 interface ClientValueSlideProps {
   clients: Client[];
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
-export default function ClientValueSlide({ clients, isPaid = false }: ClientValueSlideProps) {
+export default function ClientValueSlide({ clients, isPaid = false, tone = "balanced" }: ClientValueSlideProps) {
   const sorted = [...clients].sort(
     (a, b) => b.revenue / b.hoursPerMonth - a.revenue / a.hoursPerMonth
   );
