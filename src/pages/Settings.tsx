@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle } from "lucide-react";
 import { useSettings } from "@/hooks/use-settings";
+import type { StoryTone } from "@/types/tone";
 import ftLogo from "@/assets/ft-logo.png";
+
+const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; description: string }[] = [
+  { mode: "wins", icon: Sun, label: "What's working", description: "Focus on positive trends and achievements" },
+  { mode: "balanced", icon: Scale, label: "Balanced", description: "Mix of wins and areas for improvement" },
+  { mode: "issues", icon: AlertTriangle, label: "What needs change", description: "Focus on areas that need attention" },
+];
 
 export default function Settings() {
   const { settings, setSettings } = useSettings();
@@ -15,6 +22,7 @@ export default function Settings() {
   const [conferences, setConferences] = useState(String(settings.conferences));
   const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
   const [targetBillRate, setTargetBillRate] = useState(String(settings.targetBillRate));
+  const [tone, setTone] = useState<StoryTone>(settings.tone);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -27,6 +35,7 @@ export default function Settings() {
       conferences: Number(conferences) || 3,
       yearsFractional: Number(yearsFractional) || 2,
       targetBillRate: Number(targetBillRate) || 200,
+      tone,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -61,6 +70,35 @@ export default function Settings() {
           </p>
 
           <div className="space-y-6">
+            {/* Tone selector */}
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-3">
+                Slide Tone
+              </label>
+              <div className="grid gap-2">
+                {toneOptions.map(({ mode, icon: Icon, label, description }) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setTone(mode)}
+                    className={`flex items-center gap-3 w-full rounded-xl p-4 text-left transition-all border ${
+                      tone === mode
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-background border-border hover:border-foreground/30"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">{label}</p>
+                      <p className={`text-xs mt-0.5 ${tone === mode ? "text-background/70" : "text-muted-foreground"}`}>
+                        {description}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 Name

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import type { StoryTone } from "@/types/tone";
 
 export interface AppSettings {
   name: string;
@@ -9,6 +10,7 @@ export interface AppSettings {
   conferences: number;
   yearsFractional: number;
   targetBillRate: number;
+  tone: StoryTone;
 }
 
 const STORAGE_KEY = "ft-settings";
@@ -22,6 +24,7 @@ const DEFAULTS: AppSettings = {
   conferences: 3,
   yearsFractional: 2,
   targetBillRate: 200,
+  tone: "balanced" as StoryTone,
 };
 
 function loadSettings(): AppSettings {
