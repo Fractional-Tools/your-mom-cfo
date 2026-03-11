@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { Presentation, LayoutDashboard, Play } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
