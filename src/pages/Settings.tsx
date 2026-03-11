@@ -301,6 +301,18 @@ export default function Settings() {
             <LogOut className="w-4 h-4" />
             Log out
           </button>
+
+          <button
+            onClick={() => {
+              if (window.confirm("Reset all settings to defaults? This cannot be undone.")) {
+                localStorage.clear();
+                window.location.href = "/";
+              }
+            }}
+            className="mt-2 w-full text-center text-xs text-muted-foreground hover:text-destructive transition-colors mb-10 underline underline-offset-2"
+          >
+            Reset to defaults
+          </button>
         </motion.div>
       </div>
     </div>
