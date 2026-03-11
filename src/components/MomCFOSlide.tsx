@@ -109,6 +109,10 @@ export default function MomCFOSlide({
             Keep going. I'm proud of you.
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="See exactly how to pace your Q3 to stay ahead." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[
