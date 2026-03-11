@@ -93,7 +93,7 @@ const Index = () => {
         )}
         {currentSlide === 2 && (
           <motion.div key="slide-2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} />
+            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 3 && (
