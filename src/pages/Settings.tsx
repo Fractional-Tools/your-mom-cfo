@@ -35,6 +35,7 @@ export default function Settings() {
       conferences: Number(conferences) || 3,
       yearsFractional: Number(yearsFractional) || 2,
       targetBillRate: Number(targetBillRate) || 200,
+      tone,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
