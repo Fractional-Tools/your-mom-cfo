@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Presentation, LayoutDashboard, Play, Settings, Umbrella } from "lucide-react";
+import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
+import vacationIcon from "@/assets/vacation-icon.png";
 import ftLogo from "@/assets/ft-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import { useSettings } from "@/hooks/use-settings";
@@ -83,7 +84,7 @@ export default function Profile() {
               </p>
               <p className="font-display text-xl font-bold text-foreground flex items-center justify-center gap-1.5">
                 {s.value}
-                {s.label === "Time off" && <Umbrella className="w-5 h-5 text-muted-foreground" />}
+                {s.label === "Time off" && <img src={vacationIcon} alt="Vacation" className="w-6 h-6" />}
               </p>
             </div>
           ))}
