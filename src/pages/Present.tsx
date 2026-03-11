@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
+import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
@@ -15,6 +16,7 @@ import EngagementSlide from "@/components/EngagementSlide";
 import type { StoryTone } from "@/types/tone";
 
 const STORY_TITLES = [
+  "Meet Alex",
   "The Big Picture",
   "Time Allocation",
   "Context Switching",
@@ -36,7 +38,7 @@ const Present = () => {
   const tone: StoryTone = "balanced";
   const isPaid = true;
 
-  const totalSlides = 9;
+  const totalSlides = 10;
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
@@ -104,6 +106,7 @@ const Present = () => {
   };
 
   const slides = [
+    <IntroSlide key="s-intro" />,
     <MomCFOSlide key="s0" targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
     <UtilizationSlide key="s1" currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />,
     <ContextSwitchSlide key="s2" hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />,
