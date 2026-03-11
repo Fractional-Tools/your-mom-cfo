@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check } from "lucide-react";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check, LogOut } from "lucide-react";
 import { useSettings, type Pronouns } from "@/hooks/use-settings";
+import { useAuth } from "@/hooks/use-auth";
 import type { StoryTone } from "@/types/tone";
 import { AVATARS } from "@/lib/avatars";
 import ftLogo from "@/assets/ft-logo.png";
@@ -15,6 +16,8 @@ const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; descripti
 
 export default function Settings() {
   const { settings, setSettings } = useSettings();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState(settings.name);
   const [jobTitle, setJobTitle] = useState(settings.jobTitle);
   const [concurrentClients, setConcurrentClients] = useState(String(settings.concurrentClients));
@@ -288,6 +291,14 @@ export default function Settings() {
           >
             <Save className="w-4 h-4" />
             {saved ? "Saved ✓" : "Save Settings"}
+          </button>
+
+          <button
+            onClick={() => { logout(); navigate("/"); }}
+            className="mt-4 w-full flex items-center justify-center gap-2 border border-border text-muted-foreground rounded-xl px-6 py-3 text-sm font-medium hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors mb-10"
+          >
+            <LogOut className="w-4 h-4" />
+            Log out
           </button>
         </motion.div>
       </div>
