@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface WorkBalanceSlideProps {
   offHoursPct: number;
@@ -8,6 +9,7 @@ interface WorkBalanceSlideProps {
   eveningHours: number;
   totalHoursThisWeek: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function WorkBalanceSlide({
@@ -16,6 +18,7 @@ export default function WorkBalanceSlide({
   eveningHours,
   totalHoursThisWeek,
   isPaid = false,
+  tone = "balanced",
 }: WorkBalanceSlideProps) {
   const coreHours = totalHoursThisWeek - weekendHours - eveningHours;
 
