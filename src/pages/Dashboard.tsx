@@ -280,13 +280,36 @@ export default function Dashboard() {
               <p className="text-sm text-muted-foreground mt-0.5">July 1 · Halftime</p>
             </div>
           </div>
-          <Link
-            to="/"
-            className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
-          >
-            ← Slides
-          </Link>
-        </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
+              <button
+                onClick={() => setIsPaid(false)}
+                className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
+                  !isPaid
+                    ? "bg-foreground text-background font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Free
+              </button>
+              <button
+                onClick={() => setIsPaid(true)}
+                className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
+                  isPaid
+                    ? "bg-foreground text-background font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Pro
+              </button>
+            </div>
+            <Link
+              to="/"
+              className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+            >
+              ← Slides
+            </Link>
+          </div>
 
         {/* Tab switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 mb-8 w-fit">
