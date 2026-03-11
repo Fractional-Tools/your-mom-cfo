@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface UtilizationSlideProps {
-  currentRate: number; // e.g. 72 for 72%
-  priorRate: number; // previous period for comparison
+  currentRate: number;
+  priorRate: number;
   period: "week" | "month" | "quarter";
   billableHours: number;
   availableHours: number;
+  isPaid?: boolean;
 }
 
 export default function UtilizationSlide({
