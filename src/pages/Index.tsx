@@ -8,6 +8,7 @@ import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
 import ClientGradeSlide from "@/components/ClientGradeSlide";
+import VacationSlide from "@/components/VacationSlide";
 import type { StoryTone } from "@/types/tone";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
@@ -24,7 +25,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 6;
+  const totalSlides = 7;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -135,6 +136,11 @@ const Index = () => {
               ]}
               isPaid={isPaid} tone={tone}
             />
+          </motion.div>
+        )}
+        {currentSlide === 6 && (
+          <motion.div key="slide-6" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
       </AnimatePresence>

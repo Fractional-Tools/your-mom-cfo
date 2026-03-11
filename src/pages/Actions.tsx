@@ -40,6 +40,11 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
     { text: "Send a check-in to your A-grade clients — reinforce the relationship.", urgent: false },
     { text: "Document what makes your best client great. Use it as a filter for new ones.", urgent: false },
   ],
+  vacation: [
+    { text: "Block at least one long weekend in the next 6 weeks.", urgent: true },
+    { text: "Review your calendar for the rest of the year — where can you take 3+ days?", urgent: false },
+    { text: "Set a recurring monthly reminder to check your time-off balance.", urgent: false },
+  ],
 };
 
 export default function Actions() {
