@@ -14,6 +14,7 @@ export default function WorkBalanceSlide({
   weekendHours,
   eveningHours,
   totalHoursThisWeek,
+  isPaid = false,
 }: WorkBalanceSlideProps) {
   const coreHours = totalHoursThisWeek - weekendHours - eveningHours;
 
