@@ -121,7 +121,7 @@ const Index = () => {
                 { name: "Bright Labs", grade: "B", paysOnTime: true, steadyWork: true, lowSwitchCost: false },
                 { name: "Cedar Health", grade: "C", paysOnTime: false, steadyWork: true, lowSwitchCost: false },
               ]}
-              isPaid={isPaid}
+              isPaid={isPaid} tone={tone}
             />
           </motion.div>
         )}
