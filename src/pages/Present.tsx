@@ -42,7 +42,7 @@ const Present = () => {
   const tone: StoryTone = "balanced";
   const isPaid = true;
 
-  const totalSlides = 10;
+  const totalSlides = 11;
   const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
