@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Sun, AlertTriangle, Scale } from "lucide-react";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
 import ClientGradeSlide from "@/components/ClientGradeSlide";
+import type { StoryTone } from "@/types/tone";
+
+const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
+  { mode: "wins", icon: Sun, label: "What's working" },
+  { mode: "balanced", icon: Scale, label: "Balanced" },
+  { mode: "issues", icon: AlertTriangle, label: "What needs change" },
+];
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
+  const [tone, setTone] = useState<StoryTone>("balanced");
 
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
