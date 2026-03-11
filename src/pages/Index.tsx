@@ -21,7 +21,9 @@ const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
 ];
 
 const Index = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [searchParams] = useSearchParams();
+  const initialSlide = Number(searchParams.get("slide") || 0);
+  const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [isPaid, setIsPaid] = useState(false);
   const [tone, setTone] = useState<StoryTone>("balanced");
 
