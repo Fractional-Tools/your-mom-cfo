@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface MomCFOSlideProps {
   targetRevenue: number;
@@ -8,6 +9,7 @@ interface MomCFOSlideProps {
   dayOfYear: number;
   totalDays: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function MomCFOSlide({
@@ -16,6 +18,7 @@ export default function MomCFOSlide({
   dayOfYear = 182,
   totalDays = 365,
   isPaid = false,
+  tone = "balanced",
 }: MomCFOSlideProps) {
   const expectedPct = dayOfYear / totalDays;
   const expectedRevenue = targetRevenue * expectedPct;
