@@ -52,15 +52,17 @@ export default function ClientValueSlide({ clients, isPaid = false, tone = "bala
         className="w-full max-w-lg mx-auto"
       >
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-muted-foreground text-sm font-body tracking-wide uppercase mb-6"
-          >
-            {clients.length} Clients · Value Ranked
-          </motion.p>
+          <div className="flex items-start justify-between mb-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-muted-foreground text-sm font-body tracking-wide uppercase"
+            >
+              {clients.length} Clients · Value Ranked
+            </motion.p>
+            <FavoriteButton metricId="client-value" />
+          </div>
 
           {/* Headline */}
           <motion.div

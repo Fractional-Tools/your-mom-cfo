@@ -41,15 +41,17 @@ export default function MomCFOSlide({
       >
         {/* The warm note */}
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
-          {/* Greeting */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-muted-foreground text-sm font-body tracking-wide uppercase mb-6"
-          >
-            July 1 · Halftime Check-in
-          </motion.p>
+          <div className="flex items-start justify-between mb-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-muted-foreground text-sm font-body tracking-wide uppercase"
+            >
+              July 1 · Halftime Check-in
+            </motion.p>
+            <FavoriteButton metricId="revenue" />
+          </div>
 
           {/* The headline truth */}
           <motion.h1

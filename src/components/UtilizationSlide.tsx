@@ -57,15 +57,17 @@ export default function UtilizationSlide({
         className="w-full max-w-lg mx-auto"
       >
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
-          {/* Period label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-muted-foreground text-sm font-body tracking-wide uppercase mb-6"
-          >
-            {periodLabel} · Utilization
-          </motion.p>
+          <div className="flex items-start justify-between mb-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-muted-foreground text-sm font-body tracking-wide uppercase"
+            >
+              {periodLabel} · Utilization
+            </motion.p>
+            <FavoriteButton metricId="utilization" />
+          </div>
 
           {/* The big number */}
           <motion.div
