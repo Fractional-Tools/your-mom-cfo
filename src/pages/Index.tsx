@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import ProfileFooter from "@/components/ProfileFooter";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
