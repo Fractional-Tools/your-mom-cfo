@@ -57,13 +57,6 @@ const Index = () => {
           ))}
         </div>
       </div>
-        <Link
-          to="/dashboard"
-          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm underline-offset-2"
-        >
-          Dashboard →
-        </Link>
-      </div>
       <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-warm-glow rounded-full px-4 py-2 shadow-sm">
         <button
           onClick={() => setIsPaid(false)}
