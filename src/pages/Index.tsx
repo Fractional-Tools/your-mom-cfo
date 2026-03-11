@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
+import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,7 +12,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 3;
+  const totalSlides = 4;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -65,6 +66,22 @@ const Index = () => {
               avgSwitchesPerDay={4}
               activeClients={3}
               costPerHour={200}
+            />
+          </motion.div>
+        )}
+        {currentSlide === 3 && (
+          <motion.div
+            key="slide-3"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <WorkBalanceSlide
+              offHoursPct={28}
+              weekendHours={6}
+              eveningHours={8}
+              totalHoursThisWeek={48}
             />
           </motion.div>
         )}
