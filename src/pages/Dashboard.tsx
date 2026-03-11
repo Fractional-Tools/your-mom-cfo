@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { LayoutGrid, List, Star, GripVertical, Heart, Circle, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
 import { ALL_METRICS, type MetricId } from "@/types/metrics";
@@ -10,12 +10,12 @@ type Tab = "metrics" | "priorities" | "actions";
 
 // ─── Metrics Data ───
 const metrics = [
-  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead" },
-  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground" },
-  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind" },
-  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind" },
-  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead" },
-  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground" },
+  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead", slide: 0 },
+  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground", slide: 1 },
+  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind", slide: 2 },
+  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind", slide: 3 },
+  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead", slide: 4 },
+  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground", slide: 5 },
 ];
 
 // ─── Actions Data ───
@@ -74,6 +74,8 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
 
 // ─── Metrics Tab ───
 function MetricsTab() {
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {metrics.map((m, i) => (
@@ -82,7 +84,8 @@ function MetricsTab() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08, duration: 0.4 }}
-          className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center"
+          onClick={() => navigate(`/?slide=${m.slide}`)}
+          className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-3">
             {m.label}
