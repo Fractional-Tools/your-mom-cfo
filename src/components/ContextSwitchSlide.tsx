@@ -14,6 +14,7 @@ export default function ContextSwitchSlide({
   avgSwitchesPerDay,
   activeClients,
   costPerHour,
+  isPaid = false,
 }: ContextSwitchSlideProps) {
   const weeklyDollarCost = Math.round(hoursLostPerWeek * costPerHour);
   const monthlyCost = weeklyDollarCost * 4;
