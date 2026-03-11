@@ -104,6 +104,23 @@ const Index = () => {
             />
           </motion.div>
         )}
+        {currentSlide === 5 && (
+          <motion.div
+            key="slide-5"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <ClientGradeSlide
+              clients={[
+                { name: "Acme Corp", grade: "A", paysOnTime: true, steadyWork: true, lowSwitchCost: true },
+                { name: "Bright Labs", grade: "B", paysOnTime: true, steadyWork: true, lowSwitchCost: false },
+                { name: "Cedar Health", grade: "C", paysOnTime: false, steadyWork: true, lowSwitchCost: false },
+              ]}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Navigation dots */}
