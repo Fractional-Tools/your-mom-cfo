@@ -9,6 +9,8 @@ import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
 import ClientGradeSlide from "@/components/ClientGradeSlide";
 import VacationSlide from "@/components/VacationSlide";
+import GrowthSlide from "@/components/GrowthSlide";
+import EngagementSlide from "@/components/EngagementSlide";
 import type { StoryTone } from "@/types/tone";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
@@ -25,7 +27,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 7;
+  const totalSlides = 9;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -141,6 +143,23 @@ const Index = () => {
         {currentSlide === 6 && (
           <motion.div key="slide-6" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
             <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
+        {currentSlide === 7 && (
+          <motion.div key="slide-7" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <GrowthSlide capacityClients={1.24} currentClients={3} availableHoursPerWeek={20} avgHoursPerClient={16} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
+        {currentSlide === 8 && (
+          <motion.div key="slide-8" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <EngagementSlide
+              clients={[
+                { name: "Acme Corp", months: 18, active: true },
+                { name: "Bright Labs", months: 7, active: true },
+                { name: "Cedar Health", months: 3, active: true },
+              ]}
+              isPaid={isPaid} tone={tone}
+            />
           </motion.div>
         )}
       </AnimatePresence>

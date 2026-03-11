@@ -14,7 +14,7 @@ const PrioritiesContext = createContext<PrioritiesContextType | null>(null);
 export function PrioritiesProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<MetricId[]>([]);
   const [rankedPriorities, setRankedPriorities] = useState<MetricId[]>([
-    "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation"
+    "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation", "growth", "engagement"
   ]);
 
   const toggleFavorite = (id: MetricId) => {

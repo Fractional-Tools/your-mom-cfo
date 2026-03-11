@@ -45,6 +45,16 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
     { text: "Review your calendar for the rest of the year — where can you take 3+ days?", urgent: false },
     { text: "Set a recurring monthly reminder to check your time-off balance.", urgent: false },
   ],
+  growth: [
+    { text: "Start 2-3 conversations with potential clients this week.", urgent: true },
+    { text: "Update your positioning — are you selling the right outcome?", urgent: false },
+    { text: "Ask your best client for a referral. Warm intros close 3x faster.", urgent: false },
+  ],
+  engagement: [
+    { text: "Schedule a quarterly check-in with your longest-tenured client.", urgent: false },
+    { text: "Propose a longer engagement term at your next client renewal.", urgent: true },
+    { text: "Identify what made your shortest engagement end — fix it for the next one.", urgent: false },
+  ],
 };
 
 export default function Actions() {
