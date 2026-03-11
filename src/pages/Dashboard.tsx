@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { LayoutGrid, List, Star } from "lucide-react";
+import { LayoutGrid, List, Star, GripVertical, Heart, Circle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ftLogo from "@/assets/ft-logo.png";
+import { usePriorities } from "@/contexts/PrioritiesContext";
+import { ALL_METRICS, type MetricId } from "@/types/metrics";
 
-type ViewMode = "cards" | "list" | "highlight";
+type Tab = "metrics" | "priorities" | "actions";
 
-// Shared data
+// ─── Metrics Data ───
 const metrics = [
   { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead" },
   { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground" },
@@ -15,7 +18,62 @@ const metrics = [
   { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground" },
 ];
 
-function CardsView() {
+// ─── Actions Data ───
+interface Action {
+  text: string;
+  urgent: boolean;
+}
+
+const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
+  revenue: [
+    { text: "Review Q3 pipeline — do you have enough leads to sustain pace?", urgent: false },
+    { text: "Send follow-up invoices for any outstanding payments this week.", urgent: true },
+    { text: "Block 2 hours to plan your rate increases for next quarter.", urgent: false },
+  ],
+  utilization: [
+    { text: "Identify your 5 lowest-value hours this week and cut or delegate them.", urgent: true },
+    { text: "Reach out to one past client about upcoming project work.", urgent: false },
+    { text: "Set a weekly utilization check-in — 10 minutes every Friday.", urgent: false },
+  ],
+  switching: [
+    { text: "Batch client work into dedicated days — start with your two biggest clients.", urgent: true },
+    { text: "Move all internal/admin tasks to one block (Monday AM or Friday PM).", urgent: false },
+    { text: "Turn off notifications during deep work blocks.", urgent: false },
+  ],
+  balance: [
+    { text: "Block your calendar after 6pm for the next 2 weeks. No exceptions.", urgent: true },
+    { text: "Move any weekend client work into Friday afternoon slots.", urgent: true },
+    { text: "Set an auto-responder for emails received after hours.", urgent: false },
+  ],
+  "client-value": [
+    { text: "Prepare a rate increase proposal for your lowest-paying client.", urgent: false },
+    { text: "Track actual hours per client this month to validate your effective rates.", urgent: true },
+    { text: "Identify which client you'd replace first if a better one appeared.", urgent: false },
+  ],
+  "client-health": [
+    { text: "Have a direct conversation with your C-grade client about payment terms.", urgent: true },
+    { text: "Send a check-in to your A-grade clients — reinforce the relationship.", urgent: false },
+    { text: "Document what makes your best client great. Use it as a filter for new ones.", urgent: false },
+  ],
+  vacation: [
+    { text: "Block at least one long weekend in the next 6 weeks.", urgent: true },
+    { text: "Review your calendar for the rest of the year — where can you take 3+ days?", urgent: false },
+    { text: "Set a recurring monthly reminder to check your time-off balance.", urgent: false },
+  ],
+  growth: [
+    { text: "Start 2-3 conversations with potential clients this week.", urgent: true },
+    { text: "Update your positioning — are you selling the right outcome?", urgent: false },
+    { text: "Ask your best client for a referral. Warm intros close 3x faster.", urgent: false },
+  ],
+  engagement: [
+    { text: "Schedule a quarterly check-in with your longest-tenured client.", urgent: false },
+    { text: "Propose a longer engagement term at your next client renewal.", urgent: true },
+    { text: "Identify what made your shortest engagement end — fix it for the next one.", urgent: false },
+  ],
+};
+
+// ─── Metrics Tab ───
+function MetricsTab() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {metrics.map((m, i) => (
@@ -38,93 +96,189 @@ function CardsView() {
   );
 }
 
-function ListView() {
-  return (
-    <div className="space-y-3">
-      {metrics.map((m, i) => (
-        <motion.div
-          key={m.label}
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: i * 0.08, duration: 0.4 }}
-          className="bg-warm-glow rounded-xl px-6 py-5 flex items-center justify-between"
-        >
-          <div>
-            <p className="font-body text-sm font-medium text-foreground">{m.label}</p>
-            <p className="text-xs text-muted-foreground font-body mt-0.5">{m.sub}</p>
-          </div>
-          <p className={`font-display text-3xl md:text-4xl font-bold ${m.color}`}>
-            {m.value}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+// ─── Priorities Tab ───
+function PrioritiesTab() {
+  const { rankedPriorities, setRankedPriorities, favorites, toggleFavorite } = usePriorities();
+  const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
+  const dragOverIdx = useRef<number | null>(null);
 
-function HighlightView() {
-  const hero = metrics[0];
-  const subs = [metrics[1], metrics[2]];
+  const items = rankedPriorities.map((id) => ALL_METRICS.find((m) => m.id === id)!);
+
+  const handleDragStart = (idx: number) => setDraggedIdx(idx);
+  const handleDragOver = (e: React.DragEvent, idx: number) => {
+    e.preventDefault();
+    dragOverIdx.current = idx;
+  };
+  const handleDrop = () => {
+    if (draggedIdx === null || dragOverIdx.current === null) return;
+    const newOrder = [...rankedPriorities];
+    const [moved] = newOrder.splice(draggedIdx, 1);
+    newOrder.splice(dragOverIdx.current, 0, moved);
+    setRankedPriorities(newOrder);
+    setDraggedIdx(null);
+    dragOverIdx.current = null;
+  };
+
+  const isFav = (id: MetricId) => favorites.includes(id);
+  const atLimit = favorites.length >= 3;
 
   return (
-    <div className="space-y-4">
-      {/* Hero metric */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="bg-warm-glow rounded-2xl p-10 md:p-14 text-center"
-      >
-        <p className="text-sm font-body text-muted-foreground uppercase tracking-wide mb-4">
-          {hero.label}
-        </p>
-        <p className={`font-display text-7xl md:text-8xl font-bold ${hero.color} leading-none`}>
-          {hero.value}
-        </p>
-        <p className="font-display text-lg text-foreground/70 mt-3">{hero.sub}</p>
-      </motion.div>
+    <div>
+      <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
+        Drag to rank what matters most. Heart up to 3 — those shape your story.
+      </p>
+      <p className="text-xs text-muted-foreground/60 mb-6">
+        {favorites.length}/3 priorities selected
+      </p>
 
-      {/* Two sub cards */}
-      <div className="grid grid-cols-2 gap-4">
-        {subs.map((m, i) => (
+      <div className="space-y-2">
+        {items.map((metric, idx) => (
           <motion.div
-            key={m.label}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-            className="bg-warm-glow rounded-xl p-6 text-center"
+            key={metric.id}
+            layout
+            draggable
+            onDragStart={() => handleDragStart(idx)}
+            onDragOver={(e) => handleDragOver(e as unknown as React.DragEvent, idx)}
+            onDrop={handleDrop}
+            className={`flex items-center gap-3 bg-warm-glow rounded-xl px-4 py-4 cursor-grab active:cursor-grabbing transition-all ${
+              draggedIdx === idx ? "opacity-50 scale-95" : ""
+            }`}
           >
-            <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-2">
-              {m.label}
-            </p>
-            <p className={`font-display text-3xl md:text-4xl font-bold ${m.color}`}>
-              {m.value}
-            </p>
-            <p className="text-xs text-muted-foreground font-body mt-1">{m.sub}</p>
+            <span className="text-sm font-display text-muted-foreground/50 w-5 text-center">
+              {idx + 1}
+            </span>
+            <GripVertical className="w-4 h-4 text-muted-foreground/30 shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-body font-medium text-foreground">{metric.label}</p>
+              <p className="text-xs text-muted-foreground truncate">{metric.description}</p>
+            </div>
+            <button
+              onClick={() => toggleFavorite(metric.id)}
+              disabled={atLimit && !isFav(metric.id)}
+              className={`transition-all shrink-0 ${
+                isFav(metric.id)
+                  ? "text-behind scale-110"
+                  : atLimit
+                    ? "text-muted-foreground/15 cursor-not-allowed"
+                    : "text-muted-foreground/30 hover:text-behind/60"
+              }`}
+            >
+              <Heart className={`w-4 h-4 ${isFav(metric.id) ? "fill-current" : ""}`} />
+            </button>
           </motion.div>
         ))}
+      </div>
+
+      <div className="mt-8 bg-warm-glow/50 rounded-xl p-5">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          Your top priorities get more attention in your slides. The system learns what you care about
+          and builds a narrative around it.
+        </p>
       </div>
     </div>
   );
 }
 
-const viewOptions: { mode: ViewMode; icon: typeof LayoutGrid; label: string }[] = [
-  { mode: "cards", icon: LayoutGrid, label: "Cards" },
-  { mode: "list", icon: List, label: "List" },
-  { mode: "highlight", icon: Star, label: "Highlight" },
+// ─── Actions Tab ───
+function ActionsTab() {
+  const { favorites } = usePriorities();
+
+  const activeMetrics = favorites.length > 0
+    ? favorites
+    : (["revenue", "utilization", "switching"] as MetricId[]);
+
+  return (
+    <div>
+      <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+        {favorites.length > 0
+          ? `Based on your ${favorites.length} priorities. Do less, better.`
+          : "Heart some priorities to get personalized actions. Showing defaults for now."}
+      </p>
+
+      <div className="space-y-8">
+        {activeMetrics.map((metricId, groupIdx) => {
+          const metric = ALL_METRICS.find((m) => m.id === metricId)!;
+          const actions = ACTIONS_BY_METRIC[metricId];
+
+          return (
+            <motion.div
+              key={metricId}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: groupIdx * 0.12, duration: 0.4 }}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <h2 className="font-display text-base font-medium text-foreground">
+                  {metric.label}
+                </h2>
+                <span className="text-xs text-muted-foreground/50">·</span>
+                <span className="text-xs text-muted-foreground">{metric.description}</span>
+              </div>
+
+              <div className="space-y-2">
+                {actions.map((action, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: groupIdx * 0.12 + i * 0.08, duration: 0.35 }}
+                    className="flex items-start gap-3 bg-warm-glow rounded-xl px-4 py-3.5"
+                  >
+                    <Circle className="w-4 h-4 text-muted-foreground/30 mt-0.5 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-body text-foreground leading-relaxed">
+                        {action.text}
+                      </p>
+                    </div>
+                    {action.urgent && (
+                      <span className="text-xs font-body text-behind font-medium shrink-0 mt-0.5">
+                        now
+                      </span>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="mt-10 bg-warm-glow/50 rounded-xl p-5"
+      >
+        <p className="text-xs text-muted-foreground leading-relaxed italic font-display">
+          These actions update as your numbers change. Focus on the ones marked "now" first.
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
+// ─── Tab config ───
+const tabs: { id: Tab; label: string }[] = [
+  { id: "metrics", label: "Metrics" },
+  { id: "priorities", label: "Priorities" },
+  { id: "actions", label: "Actions" },
 ];
 
+// ─── Main Dashboard ───
 export default function Dashboard() {
-  const [view, setView] = useState<ViewMode>("cards");
+  const [activeTab, setActiveTab] = useState<Tab>("metrics");
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
+        {/* Logo + Header */}
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="font-display text-2xl text-foreground">Your Dashboard</h1>
-            <p className="text-sm text-muted-foreground mt-1">July 1 · Halftime</p>
+          <div className="flex items-center gap-3">
+            <img src={ftLogo} alt="Fractional Tools" className="w-7 h-7" />
+            <div>
+              <h1 className="font-display text-2xl text-foreground">Your Dashboard</h1>
+              <p className="text-sm text-muted-foreground mt-0.5">July 1 · Halftime</p>
+            </div>
           </div>
           <Link
             to="/"
@@ -134,29 +288,28 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        {/* View switcher */}
+        {/* Tab switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 mb-8 w-fit">
-          {viewOptions.map(({ mode, icon: Icon, label }) => (
+          {tabs.map(({ id, label }) => (
             <button
-              key={mode}
-              onClick={() => setView(mode)}
-              className={`flex items-center gap-1.5 text-xs px-4 py-2 rounded-full transition-all ${
-                view === mode
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={`text-xs px-5 py-2 rounded-full transition-all ${
+                activeTab === id
                   ? "bg-foreground text-background font-medium"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
               {label}
             </button>
           ))}
         </div>
 
-        {/* Content */}
-        <motion.div key={view} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
-          {view === "cards" && <CardsView />}
-          {view === "list" && <ListView />}
-          {view === "highlight" && <HighlightView />}
+        {/* Tab content */}
+        <motion.div key={activeTab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+          {activeTab === "metrics" && <MetricsTab />}
+          {activeTab === "priorities" && <PrioritiesTab />}
+          {activeTab === "actions" && <ActionsTab />}
         </motion.div>
       </div>
     </div>
