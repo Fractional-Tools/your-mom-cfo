@@ -1,4 +1,4 @@
-export type MetricId = "revenue" | "utilization" | "switching" | "balance" | "client-value" | "client-health" | "vacation";
+export type MetricId = "revenue" | "utilization" | "switching" | "balance" | "client-value" | "client-health" | "vacation" | "growth" | "engagement";
 
 export interface MetricInfo {
   id: MetricId;
@@ -14,9 +14,10 @@ export const ALL_METRICS: MetricInfo[] = [
   { id: "client-value", label: "Client Value", description: "Which clients pay the most per hour?" },
   { id: "client-health", label: "Client Health", description: "Which clients are easiest to work with?" },
   { id: "vacation", label: "Time Off", description: "Are you taking enough breaks to stay sharp?" },
+  { id: "growth", label: "Growth Capacity", description: "Do you have room for more clients?" },
+  { id: "engagement", label: "Client Retention", description: "How long do your clients stick around?" },
 ];
 
-// Map slide index to metric id
 export const SLIDE_METRIC_MAP: MetricId[] = [
-  "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation"
+  "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation", "growth", "engagement"
 ];
