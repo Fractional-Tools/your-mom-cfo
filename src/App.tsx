@@ -25,7 +25,6 @@ const App = () => (
         <PrioritiesProvider>
           <Toaster />
           <Sonner />
-          <LoginGate>
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Profile />} />
@@ -35,12 +34,11 @@ const App = () => (
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/actions" element={<Actions />} />
                 <Route path="/present" element={<Present />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/settings" element={<LoginGate><Settings /></LoginGate>} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
-          </LoginGate>
         </PrioritiesProvider>
       </TooltipProvider>
     </ThemeProvider>
