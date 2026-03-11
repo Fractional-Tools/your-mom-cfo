@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface UtilizationSlideProps {
   currentRate: number;
@@ -9,6 +10,7 @@ interface UtilizationSlideProps {
   billableHours: number;
   availableHours: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function UtilizationSlide({
@@ -18,6 +20,7 @@ export default function UtilizationSlide({
   billableHours,
   availableHours,
   isPaid = false,
+  tone = "balanced",
 }: UtilizationSlideProps) {
   const delta = currentRate - priorRate;
   const isUp = delta >= 0;
