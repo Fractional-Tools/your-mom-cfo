@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
-import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
+import { Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import { useSettings } from "@/hooks/use-settings";
 import ProfileFooter from "@/components/ProfileFooter";
@@ -16,13 +16,6 @@ import VacationSlide from "@/components/VacationSlide";
 import GrowthSlide from "@/components/GrowthSlide";
 import EngagementSlide from "@/components/EngagementSlide";
 import CTASlide from "@/components/CTASlide";
-import type { StoryTone } from "@/types/tone";
-
-const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
-  { mode: "wins", icon: Sun, label: "What's working" },
-  { mode: "balanced", icon: Scale, label: "Balanced" },
-  { mode: "issues", icon: AlertTriangle, label: "What needs change" },
-];
 
 const Index = () => {
   const { settings } = useSettings();
@@ -30,7 +23,7 @@ const Index = () => {
   const initialSlide = Number(searchParams.get("slide") || 0);
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [isPaid, setIsPaid] = useState(false);
-  const [tone, setTone] = useState<StoryTone>("balanced");
+  const tone = settings.tone;
 
   const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
