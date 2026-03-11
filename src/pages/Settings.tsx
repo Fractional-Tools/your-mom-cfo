@@ -29,6 +29,7 @@ export default function Settings() {
   const [tone, setTone] = useState<StoryTone>(settings.tone);
   const [avatarId, setAvatarId] = useState(settings.avatarId);
   const [pronouns, setPronouns] = useState<Pronouns>(settings.pronouns);
+  const [profileTitle, setProfileTitle] = useState(settings.profileTitle);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
