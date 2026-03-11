@@ -14,6 +14,7 @@ import ClientGradeSlide from "@/components/ClientGradeSlide";
 import VacationSlide from "@/components/VacationSlide";
 import GrowthSlide from "@/components/GrowthSlide";
 import EngagementSlide from "@/components/EngagementSlide";
+import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
 const STORY_TITLES = [
