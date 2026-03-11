@@ -389,7 +389,7 @@ const tabs: { id: Tab; label: string }[] = [
 // ─── Main Dashboard ───
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<Tab>("metrics");
-  const [isPaid, setIsPaid] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
@@ -404,28 +404,13 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
-              <button
-                onClick={() => setIsPaid(false)}
-                className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
-                  !isPaid
-                    ? "bg-foreground text-background font-medium"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Free
-              </button>
-              <button
-                onClick={() => setIsPaid(true)}
-                className={`text-xs font-body px-3 py-1 rounded-full transition-all ${
-                  isPaid
-                    ? "bg-foreground text-background font-medium"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Pro
-              </button>
-            </div>
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-warm-glow hover:bg-muted transition-all text-muted-foreground hover:text-foreground"
+              title="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             <Link
               to="/"
               className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
