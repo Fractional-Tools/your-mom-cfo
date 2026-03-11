@@ -413,7 +413,7 @@ export default function Dashboard() {
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
             <Link
-              to="/"
+              to="/slides"
               className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
             >
               ← Slides

@@ -86,7 +86,7 @@ export default function HowItWorks() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
-            to="/"
+            to="/slides"
             className="flex items-center justify-center gap-2 bg-warm-glow text-foreground rounded-full px-6 py-3 text-sm font-body hover:bg-muted transition-colors"
           >
             View your slides
