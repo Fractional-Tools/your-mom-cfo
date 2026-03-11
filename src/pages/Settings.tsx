@@ -22,6 +22,7 @@ export default function Settings() {
   const [conferences, setConferences] = useState(String(settings.conferences));
   const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
   const [targetBillRate, setTargetBillRate] = useState(String(settings.targetBillRate));
+  const [tone, setTone] = useState<StoryTone>(settings.tone);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
