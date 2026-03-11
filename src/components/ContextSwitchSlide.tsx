@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import FavoriteButton from "./FavoriteButton";
 import type { StoryTone } from "@/types/tone";
 
 interface ContextSwitchSlideProps {
