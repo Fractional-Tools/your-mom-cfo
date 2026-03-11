@@ -117,6 +117,51 @@ export default function Settings() {
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">k</span>
               </div>
             </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Vacation Weeks / Year
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="52"
+                value={vacationWeeks}
+                onChange={(e) => setVacationWeeks(e.target.value)}
+                className={inputClass}
+                placeholder="4"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Conferences / Year
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="20"
+                value={conferences}
+                onChange={(e) => setConferences(e.target.value)}
+                className={inputClass}
+                placeholder="3"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Years as Fractional
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="50"
+                value={yearsFractional}
+                onChange={(e) => setYearsFractional(e.target.value)}
+                className={inputClass}
+                placeholder="2"
+              />
+            </div>
           </div>
 
           <button
