@@ -27,6 +27,12 @@ export default function ClientValueSlide({ clients, isPaid = false, tone = "bala
   const gap = topRate - bottomRate;
 
   const getMomTake = () => {
+    if (tone === "wins") {
+      return `${top.name} at $${topRate}/hr — that's your best relationship. More of this.`;
+    }
+    if (tone === "issues") {
+      return `${bottom.name} at $${bottomRate}/hr is dragging your average down.`;
+    }
     if (gap > 100)
       return "That's a big gap. Think about whether the low end is worth your time.";
     if (gap > 50)

@@ -109,7 +109,13 @@ export default function MomCFOSlide({
             transition={{ delay: 1.8, duration: 0.6 }}
             className="text-muted-foreground font-display text-base italic"
           >
-            Keep going. I'm proud of you.
+            {tone === "wins" && isAhead
+              ? "This is working. Your pace is right. Trust it."
+              : tone === "issues" && !isAhead
+                ? `You're ${Math.abs(aheadPct)}% behind. Time to look at what's slowing you down.`
+                : tone === "issues" && isAhead
+                  ? "You're ahead — but don't coast. Check what could slip."
+                  : "Keep going. I'm proud of you."}
           </motion.p>
 
           {!isPaid && (

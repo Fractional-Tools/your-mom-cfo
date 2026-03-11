@@ -23,6 +23,14 @@ export default function WorkBalanceSlide({
   const coreHours = totalHoursThisWeek - weekendHours - eveningHours;
 
   const getMomTake = () => {
+    if (tone === "wins") {
+      if (offHoursPct < 20) return "Great boundaries. You're protecting your time.";
+      return `${coreHours}h in core hours — that's your foundation. It's solid.`;
+    }
+    if (tone === "issues") {
+      if (offHoursPct >= 25) return `${weekendHours + eveningHours}h outside core hours. That's not scalable.`;
+      return "Watch evenings. Small creep becomes big burnout.";
+    }
     if (offHoursPct >= 40)
       return "Honey, this isn't sustainable. You're building a job, not a business.";
     if (offHoursPct >= 25)

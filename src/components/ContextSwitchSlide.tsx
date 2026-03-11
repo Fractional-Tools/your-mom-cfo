@@ -24,6 +24,13 @@ export default function ContextSwitchSlide({
   const monthlyCost = weeklyDollarCost * 4;
 
   const getMomTake = () => {
+    if (tone === "wins") {
+      if (hoursLostPerWeek < 4) return "You're batching well. Your switch cost is low.";
+      return `${activeClients} clients and still productive. You're handling the juggle.`;
+    }
+    if (tone === "issues") {
+      return `${hoursLostPerWeek}h/week gone — that's $${monthlyCost.toLocaleString()}/mo you can't bill.`;
+    }
     if (hoursLostPerWeek >= 8)
       return "That's a full day gone. We need to batch your weeks better.";
     if (hoursLostPerWeek >= 5)

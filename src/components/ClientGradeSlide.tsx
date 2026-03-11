@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface ClientGrade {
   name: string;
@@ -13,6 +14,7 @@ interface ClientGrade {
 interface ClientGradeSlideProps {
   clients: ClientGrade[];
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 const gradeColor: Record<string, string> = {
@@ -29,12 +31,23 @@ const gradeBg: Record<string, string> = {
   D: "bg-behind/10",
 };
 
-export default function ClientGradeSlide({ clients, isPaid = false }: ClientGradeSlideProps) {
+export default function ClientGradeSlide({ clients, isPaid = false, tone = "balanced" }: ClientGradeSlideProps) {
   const sorted = [...clients].sort((a, b) => a.grade.localeCompare(b.grade));
 
   const getMomTake = () => {
     const hasD = sorted.some((c) => c.grade === "D");
     const allAB = sorted.every((c) => c.grade === "A" || c.grade === "B");
+    const bestClient = sorted[0];
+    const worstClient = sorted[sorted.length - 1];
+
+    if (tone === "wins") {
+      if (allAB) return "All A's and B's. You've built a great client roster.";
+      return `${bestClient.name} is a model client. Find more like them.`;
+    }
+    if (tone === "issues") {
+      if (hasD) return `${worstClient.name} is costing you more than they're worth.`;
+      return `${worstClient.name} has room to improve. Address it before it gets worse.`;
+    }
     if (hasD) return "You have a problem client. You already know which one.";
     if (allAB) return "Good clients. Protect these relationships.";
     return "Most are solid. One could be better.";
