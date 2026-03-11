@@ -122,6 +122,19 @@ export default function UtilizationSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${availableHours - billableHours} unbilled hours this period`,
+                `Utilization trending ${priorRate < currentRate ? "up" : "down"} over the last 3 periods`,
+                `Industry benchmark for fractionals is 65–75%`,
+              ]}
+              recommendation={currentRate < 65
+                ? "Consider reaching out to past clients for project work to fill gaps."
+                : "You're in the sweet spot. Protect admin time — don't push past 80%."}
+            />
+          )}
         </div>
       </motion.div>
     </div>

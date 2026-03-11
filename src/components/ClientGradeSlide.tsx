@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface ClientGrade {
   name: string;
@@ -10,6 +11,7 @@ interface ClientGrade {
 
 interface ClientGradeSlideProps {
   clients: ClientGrade[];
+  isPaid?: boolean;
 }
 
 const gradeColor: Record<string, string> = {

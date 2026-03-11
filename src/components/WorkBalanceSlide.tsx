@@ -127,6 +127,19 @@ export default function WorkBalanceSlide({
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${eveningHours} evening hours and ${weekendHours} weekend hours this period`,
+                `${totalHoursThisWeek}h total — ${totalHoursThisWeek > 40 ? `${totalHoursThisWeek - 40}h over a standard week` : "within a standard week"}`,
+                `Off-hours work has been ${offHoursPct > 20 ? "trending up" : "steady"} over 3 months`,
+              ]}
+              recommendation={offHoursPct > 25
+                ? "Block your calendar after 6pm. Move recurring client work into core hours — even if it means a harder conversation."
+                : "You're managing boundaries well. Keep your weekend blocks protected."}
+            />
+          )}
         </div>
       </motion.div>
     </div>

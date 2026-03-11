@@ -107,6 +107,17 @@ export default function MomCFOSlide({
           >
             Keep going. I'm proud of you.
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `You need $${Math.round((targetRevenue - currentRevenue) / 1000)}k more to hit your goal`,
+                `At current pace, you'll finish ~${Math.round((currentRevenue / (dayOfYear / totalDays)) / 1000)}k for the year`,
+                `Your best month was likely early Q2 based on trajectory`,
+              ]}
+              recommendation="Stay the course. Your Q3 pipeline should focus on maintaining this pace — don't over-commit trying to accelerate."
+            />
+          )}
         </div>
       </motion.div>
     </div>

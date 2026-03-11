@@ -149,6 +149,17 @@ export default function ClientValueSlide({ clients, isPaid = false }: ClientValu
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `Top client effective rate: $${Math.round(sorted[0].revenue / sorted[0].hoursPerMonth)}/hr`,
+                `Bottom client effective rate: $${Math.round(sorted[sorted.length - 1].revenue / sorted[sorted.length - 1].hoursPerMonth)}/hr`,
+                `Raising your lowest rate by $25/hr would add $${Math.round(sorted[sorted.length - 1].hoursPerMonth * 25).toLocaleString()}/mo`,
+              ]}
+              recommendation={`Consider renegotiating ${sorted[sorted.length - 1].name}'s rate at your next renewal, or reallocate those hours to higher-value work.`}
+            />
+          )}
         </div>
       </motion.div>
     </div>
