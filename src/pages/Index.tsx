@@ -8,6 +8,7 @@ import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
 import ClientGradeSlide from "@/components/ClientGradeSlide";
+import VacationSlide from "@/components/VacationSlide";
 import type { StoryTone } from "@/types/tone";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
