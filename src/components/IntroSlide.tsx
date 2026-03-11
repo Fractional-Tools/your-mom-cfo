@@ -17,7 +17,7 @@ export default function IntroSlide() {
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
           <div className="flex flex-col items-center text-center">
             <motion.img
-              src={profilePhoto}
+              src={getAvatarSrc(settings.avatarId)}
               alt={settings.name}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
