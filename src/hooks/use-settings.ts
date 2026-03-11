@@ -10,6 +10,7 @@ export interface AppSettings {
   conferences: number;
   yearsFractional: number;
   targetBillRate: number;
+  tone: StoryTone;
 }
 
 const STORAGE_KEY = "ft-settings";
