@@ -14,6 +14,7 @@ export default function MomCFOSlide({
   currentRevenue = 0,
   dayOfYear = 182,
   totalDays = 365,
+  isPaid = false,
 }: MomCFOSlideProps) {
   const expectedPct = dayOfYear / totalDays;
   const expectedRevenue = targetRevenue * expectedPct;
