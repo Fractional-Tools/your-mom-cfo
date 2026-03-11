@@ -390,6 +390,8 @@ const tabs: { id: Tab; label: string }[] = [
 
 // ─── Main Dashboard ───
 export default function Dashboard() {
+  const { settings } = useSettings();
+  const firstName = settings.name.split(" ")[0];
   const [activeTab, setActiveTab] = useState<Tab>("metrics");
   const { theme, setTheme } = useTheme();
 
