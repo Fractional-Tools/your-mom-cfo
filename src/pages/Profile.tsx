@@ -9,6 +9,8 @@ const stats = [
   { label: "Experience", value: "2 years fractional" },
   { label: "Clients / year", value: "4–6" },
   { label: "Current clients", value: "2.5 avg" },
+  { label: "Revenue goal", value: "$370k / yr" },
+  { label: "Time off", value: "4 weeks + 3 conferences" },
 ];
 
 export default function Profile() {
