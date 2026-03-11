@@ -148,7 +148,7 @@ function MetricsTab() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.06, duration: 0.35 }}
-              onClick={() => navigate(`/?slide=${m.slide}`)}
+              onClick={() => navigate(`/slides?slide=${m.slide}`)}
               className="flex items-center justify-between bg-warm-glow rounded-xl px-5 py-4 cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.01] active:scale-[0.99] transition-all"
             >
               <div className="flex items-center gap-3">
