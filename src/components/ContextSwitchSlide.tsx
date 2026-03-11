@@ -101,7 +101,7 @@ export default function ContextSwitchSlide({
             transition={{ delay: 1.5, duration: 0.6 }}
             className="text-muted-foreground font-display text-base italic"
           >
-            {getMomTake()} — Mom CFO 💛
+            {getMomTake()}
           </motion.p>
         </div>
       </motion.div>

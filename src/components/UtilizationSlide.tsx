@@ -117,7 +117,7 @@ export default function UtilizationSlide({
             transition={{ delay: 1.8, duration: 0.6 }}
             className="text-muted-foreground font-display text-base italic"
           >
-            {getMomTake()} — Mom CFO 💛
+            {getMomTake()}
           </motion.p>
         </div>
       </motion.div>

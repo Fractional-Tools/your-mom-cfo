@@ -102,7 +102,7 @@ export default function MomCFOSlide({
             transition={{ delay: 1.8, duration: 0.6 }}
             className="text-muted-foreground font-display text-base italic"
           >
-            Keep going. I'm proud of you. — Mom CFO 💛
+            Keep going. I'm proud of you.
           </motion.p>
         </div>
       </motion.div>
