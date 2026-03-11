@@ -103,6 +103,19 @@ export default function ClientGradeSlide({ clients, isPaid = false }: ClientGrad
           >
             {getMomTake()}
           </motion.p>
+
+          {isPaid && (
+            <DeepDive
+              details={[
+                `${clients.filter(c => c.paysOnTime).length} of ${clients.length} clients pay on time`,
+                `${clients.filter(c => !c.lowSwitchCost).length} clients have high switching friction`,
+                `Late payers cost you ~$500/mo in cash flow drag`,
+              ]}
+              recommendation={clients.some(c => c.grade === "C" || c.grade === "D")
+                ? "Have a direct conversation with your C/D clients about payment terms. Set boundaries now or plan your exit."
+                : "Your client roster is healthy. Focus on deepening these relationships."}
+            />
+          )}
         </div>
       </motion.div>
     </div>
