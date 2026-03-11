@@ -69,6 +69,22 @@ const Index = () => {
             />
           </motion.div>
         )}
+        {currentSlide === 3 && (
+          <motion.div
+            key="slide-3"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <WorkBalanceSlide
+              offHoursPct={28}
+              weekendHours={6}
+              eveningHours={8}
+              totalHoursThisWeek={48}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Navigation dots */}
