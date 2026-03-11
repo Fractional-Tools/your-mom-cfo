@@ -13,6 +13,7 @@ export const ALL_METRICS: MetricInfo[] = [
   { id: "balance", label: "Work-Life Balance", description: "How much work bleeds outside 9–5?" },
   { id: "client-value", label: "Client Value", description: "Which clients pay the most per hour?" },
   { id: "client-health", label: "Client Health", description: "Which clients are easiest to work with?" },
+  { id: "vacation", label: "Time Off", description: "Are you taking enough breaks to stay sharp?" },
 ];
 
 // Map slide index to metric id
