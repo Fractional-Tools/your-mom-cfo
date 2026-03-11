@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface MomCFOSlideProps {
   targetRevenue: number;
@@ -8,6 +9,7 @@ interface MomCFOSlideProps {
   dayOfYear: number;
   totalDays: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function MomCFOSlide({
@@ -16,6 +18,7 @@ export default function MomCFOSlide({
   dayOfYear = 182,
   totalDays = 365,
   isPaid = false,
+  tone = "balanced",
 }: MomCFOSlideProps) {
   const expectedPct = dayOfYear / totalDays;
   const expectedRevenue = targetRevenue * expectedPct;
@@ -106,7 +109,13 @@ export default function MomCFOSlide({
             transition={{ delay: 1.8, duration: 0.6 }}
             className="text-muted-foreground font-display text-base italic"
           >
-            Keep going. I'm proud of you.
+            {tone === "wins" && isAhead
+              ? "This is working. Your pace is right. Trust it."
+              : tone === "issues" && !isAhead
+                ? `You're ${Math.abs(aheadPct)}% behind. Time to look at what's slowing you down.`
+                : tone === "issues" && isAhead
+                  ? "You're ahead — but don't coast. Check what could slip."
+                  : "Keep going. I'm proud of you."}
           </motion.p>
 
           {!isPaid && (

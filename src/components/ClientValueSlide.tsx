@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface Client {
   name: string;
@@ -11,9 +12,10 @@ interface Client {
 interface ClientValueSlideProps {
   clients: Client[];
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
-export default function ClientValueSlide({ clients, isPaid = false }: ClientValueSlideProps) {
+export default function ClientValueSlide({ clients, isPaid = false, tone = "balanced" }: ClientValueSlideProps) {
   const sorted = [...clients].sort(
     (a, b) => b.revenue / b.hoursPerMonth - a.revenue / a.hoursPerMonth
   );
@@ -25,6 +27,12 @@ export default function ClientValueSlide({ clients, isPaid = false }: ClientValu
   const gap = topRate - bottomRate;
 
   const getMomTake = () => {
+    if (tone === "wins") {
+      return `${top.name} at $${topRate}/hr — that's your best relationship. More of this.`;
+    }
+    if (tone === "issues") {
+      return `${bottom.name} at $${bottomRate}/hr is dragging your average down.`;
+    }
     if (gap > 100)
       return "That's a big gap. Think about whether the low end is worth your time.";
     if (gap > 50)

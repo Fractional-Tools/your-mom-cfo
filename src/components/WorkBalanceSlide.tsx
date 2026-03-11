@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface WorkBalanceSlideProps {
   offHoursPct: number;
@@ -8,6 +9,7 @@ interface WorkBalanceSlideProps {
   eveningHours: number;
   totalHoursThisWeek: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function WorkBalanceSlide({
@@ -16,10 +18,19 @@ export default function WorkBalanceSlide({
   eveningHours,
   totalHoursThisWeek,
   isPaid = false,
+  tone = "balanced",
 }: WorkBalanceSlideProps) {
   const coreHours = totalHoursThisWeek - weekendHours - eveningHours;
 
   const getMomTake = () => {
+    if (tone === "wins") {
+      if (offHoursPct < 20) return "Great boundaries. You're protecting your time.";
+      return `${coreHours}h in core hours — that's your foundation. It's solid.`;
+    }
+    if (tone === "issues") {
+      if (offHoursPct >= 25) return `${weekendHours + eveningHours}h outside core hours. That's not scalable.`;
+      return "Watch evenings. Small creep becomes big burnout.";
+    }
     if (offHoursPct >= 40)
       return "Honey, this isn't sustainable. You're building a job, not a business.";
     if (offHoursPct >= 25)

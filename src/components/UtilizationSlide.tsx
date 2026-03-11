@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface UtilizationSlideProps {
   currentRate: number;
@@ -9,6 +10,7 @@ interface UtilizationSlideProps {
   billableHours: number;
   availableHours: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function UtilizationSlide({
@@ -18,6 +20,7 @@ export default function UtilizationSlide({
   billableHours,
   availableHours,
   isPaid = false,
+  tone = "balanced",
 }: UtilizationSlideProps) {
   const delta = currentRate - priorRate;
   const isUp = delta >= 0;
@@ -27,8 +30,17 @@ export default function UtilizationSlide({
   const priorLabel =
     period === "week" ? "last week" : period === "month" ? "last month" : "last quarter";
 
-  // Mom's interpretation
   const getMomTake = () => {
+    if (tone === "wins") {
+      if (currentRate >= 65) return "Solid utilization. You're earning well for the hours you have.";
+      if (isUp) return `Up ${delta}% from ${priorLabel}. The trend is moving the right way.`;
+      return "Every hour billed is a win. You're building.";
+    }
+    if (tone === "issues") {
+      if (currentRate < 50) return "Under 50%. You need more billable work or fewer available hours.";
+      if (currentRate >= 80) return "Over 80% — you're maxed out with no room for growth work.";
+      return `${availableHours - billableHours} unbilled hours. That's money left on the table.`;
+    }
     if (currentRate >= 80) return "You're running hot. Make sure you're leaving room to breathe.";
     if (currentRate >= 65) return "This is a healthy pace. You've got margin and momentum.";
     if (currentRate >= 50) return "There's room to fill. A good time to plant seeds.";

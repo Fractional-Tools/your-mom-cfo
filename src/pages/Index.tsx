@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Sun, AlertTriangle, Scale } from "lucide-react";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
 import ClientGradeSlide from "@/components/ClientGradeSlide";
+import type { StoryTone } from "@/types/tone";
+
+const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
+  { mode: "wins", icon: Sun, label: "What's working" },
+  { mode: "balanced", icon: Scale, label: "Balanced" },
+  { mode: "issues", icon: AlertTriangle, label: "What needs change" },
+];
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
+  const [tone, setTone] = useState<StoryTone>("balanced");
 
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
@@ -23,13 +32,30 @@ const Index = () => {
   return (
     <div className="relative min-h-screen bg-background">
       {/* Top bar */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-6 left-6 z-50 flex items-center gap-3">
         <Link
           to="/dashboard"
-          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm underline-offset-2"
+          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
         >
           Dashboard →
         </Link>
+        {/* Tone switcher */}
+        <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
+          {toneOptions.map(({ mode, icon: Icon, label }) => (
+            <button
+              key={mode}
+              onClick={() => setTone(mode)}
+              className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded-full transition-all ${
+                tone === mode
+                  ? "bg-foreground text-background font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon className="w-3 h-3" />
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
       <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-warm-glow rounded-full px-4 py-2 shadow-sm">
         <button
@@ -57,22 +83,22 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {currentSlide === 0 && (
           <motion.div key="slide-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} />
+            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 1 && (
           <motion.div key="slide-1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <UtilizationSlide currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} />
+            <UtilizationSlide currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 2 && (
           <motion.div key="slide-2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} />
+            <ContextSwitchSlide hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 3 && (
           <motion.div key="slide-3" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <WorkBalanceSlide offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} />
+            <WorkBalanceSlide offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 4 && (
@@ -83,7 +109,7 @@ const Index = () => {
                 { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
                 { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
               ]}
-              isPaid={isPaid}
+              isPaid={isPaid} tone={tone}
             />
           </motion.div>
         )}
@@ -95,7 +121,7 @@ const Index = () => {
                 { name: "Bright Labs", grade: "B", paysOnTime: true, steadyWork: true, lowSwitchCost: false },
                 { name: "Cedar Health", grade: "C", paysOnTime: false, steadyWork: true, lowSwitchCost: false },
               ]}
-              isPaid={isPaid}
+              isPaid={isPaid} tone={tone}
             />
           </motion.div>
         )}
