@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface MomCFOSlideProps {
   targetRevenue: number;
   currentRevenue: number;
   dayOfYear: number;
   totalDays: number;
+  isPaid?: boolean;
 }
 
 export default function MomCFOSlide({
