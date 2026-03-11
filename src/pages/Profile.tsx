@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
 import vacationIcon from "@/assets/vacation-icon.png";
 import ftLogo from "@/assets/ft-logo.png";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import { getAvatarSrc } from "@/lib/avatars";
 import { useSettings } from "@/hooks/use-settings";
 
 export default function Profile() {
-  const { settings } = useSettings();
+  const { settings, pronoun } = useSettings();
 
   const stats = [
     { label: "Role", value: settings.jobTitle.replace("Fractional ", "") },
@@ -34,7 +34,7 @@ export default function Profile() {
           className="flex flex-col items-center text-center mb-10"
         >
           <img
-            src={profilePhoto}
+            src={getAvatarSrc(settings.avatarId)}
             alt="Profile photo"
             className="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-warm-glow"
           />
@@ -100,7 +100,7 @@ export default function Profile() {
           <p className="text-sm text-muted-foreground leading-relaxed">
             {settings.name} works as a {settings.jobTitle.toLowerCase()}, partnering with companies
             to shape product strategy without the overhead of a full-time hire. Currently working
-            with {settings.concurrentClients} clients, bringing focused, senior leadership to each
+            with {settings.concurrentClients} clients, {pronoun.subject} brings focused, senior leadership to each
             engagement — helping teams ship faster and prioritize better.
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed mt-4">

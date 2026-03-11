@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import profilePhoto from "@/assets/profile-photo.jpg";
 import ftLogo from "@/assets/ft-logo.png";
 import { useSettings } from "@/hooks/use-settings";
+import { getAvatarSrc } from "@/lib/avatars";
 
 export default function IntroSlide() {
-  const { settings } = useSettings();
+  const { settings, pronoun } = useSettings();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-6 font-body">
@@ -17,7 +17,7 @@ export default function IntroSlide() {
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
           <div className="flex flex-col items-center text-center">
             <motion.img
-              src={profilePhoto}
+              src={getAvatarSrc(settings.avatarId)}
               alt={settings.name}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -46,7 +46,7 @@ export default function IntroSlide() {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="font-display text-xl md:text-2xl text-foreground/80 leading-relaxed mb-8"
             >
-              This is the virtual CFO that keeps him{" "}
+              This is the virtual CFO that keeps {pronoun.object}{" "}
               <span className="text-foreground font-semibold">on track</span>,{" "}
               <span className="text-foreground font-semibold">current</span>, and{" "}
               <span className="text-foreground font-semibold">happy</span> about being fractional.

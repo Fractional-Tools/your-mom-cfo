@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Sun, Scale, AlertTriangle } from "lucide-react";
-import { useSettings } from "@/hooks/use-settings";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check } from "lucide-react";
+import { useSettings, type Pronouns } from "@/hooks/use-settings";
 import type { StoryTone } from "@/types/tone";
+import { AVATARS } from "@/lib/avatars";
 import ftLogo from "@/assets/ft-logo.png";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; description: string }[] = [
@@ -23,6 +24,8 @@ export default function Settings() {
   const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
   const [targetBillRate, setTargetBillRate] = useState(String(settings.targetBillRate));
   const [tone, setTone] = useState<StoryTone>(settings.tone);
+  const [avatarId, setAvatarId] = useState(settings.avatarId);
+  const [pronouns, setPronouns] = useState<Pronouns>(settings.pronouns);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -36,6 +39,8 @@ export default function Settings() {
       yearsFractional: Number(yearsFractional) || 2,
       targetBillRate: Number(targetBillRate) || 200,
       tone,
+      avatarId,
+      pronouns,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -70,6 +75,61 @@ export default function Settings() {
           </p>
 
           <div className="space-y-6">
+            {/* Avatar picker */}
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-3">
+                Profile Photo
+              </label>
+              <div className="grid grid-cols-5 gap-3">
+                {AVATARS.map((a) => (
+                  <button
+                    key={a.id}
+                    type="button"
+                    onClick={() => setAvatarId(a.id)}
+                    className={`relative rounded-full overflow-hidden aspect-square border-2 transition-all ${
+                      avatarId === a.id
+                        ? "border-foreground ring-2 ring-foreground/20 scale-105"
+                        : "border-transparent hover:border-foreground/30"
+                    }`}
+                  >
+                    <img src={a.src} alt={a.label} className="w-full h-full object-cover" />
+                    {avatarId === a.id && (
+                      <div className="absolute inset-0 bg-foreground/30 flex items-center justify-center">
+                        <Check className="w-5 h-5 text-background" />
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Pronouns */}
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-3">
+                Pronouns
+              </label>
+              <div className="flex gap-2">
+                {([
+                  { value: "he" as Pronouns, label: "He / Him" },
+                  { value: "she" as Pronouns, label: "She / Her" },
+                  { value: "they" as Pronouns, label: "They / Them" },
+                ]).map((p) => (
+                  <button
+                    key={p.value}
+                    type="button"
+                    onClick={() => setPronouns(p.value)}
+                    className={`flex-1 text-sm rounded-xl py-3 transition-all border ${
+                      pronouns === p.value
+                        ? "bg-foreground text-background border-foreground font-medium"
+                        : "bg-background border-border text-muted-foreground hover:border-foreground/30"
+                    }`}
+                  >
+                    {p.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Tone selector */}
             <div>
               <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-3">
