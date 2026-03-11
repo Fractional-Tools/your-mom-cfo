@@ -17,8 +17,8 @@ import EngagementSlide from "@/components/EngagementSlide";
 import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
-const STORY_TITLES = [
-  "Meet Alex",
+const getStoryTitles = (firstName: string) => [
+  `Meet ${firstName}`,
   "The Big Picture",
   "Time Allocation",
   "Context Switching",
