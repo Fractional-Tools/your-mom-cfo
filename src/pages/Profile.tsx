@@ -21,9 +21,6 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-xl mx-auto">
-        {/* Greeting */}
-        <p className="text-xs text-muted-foreground mb-8">{settings.name}...</p>
-
         {/* Header */}
         <div className="flex items-center justify-center mb-12">
           <h2 className="font-display text-2xl text-foreground">{settings.profileTitle || "Your Fractional Report"}</h2>
