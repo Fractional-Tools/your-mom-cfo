@@ -5,6 +5,9 @@ export interface AppSettings {
   jobTitle: string;
   concurrentClients: number;
   revenueGoal: number;
+  vacationWeeks: number;
+  conferences: number;
+  yearsFractional: number;
 }
 
 const STORAGE_KEY = "ft-settings";
@@ -14,6 +17,9 @@ const DEFAULTS: AppSettings = {
   jobTitle: "Fractional Chief Product Officer",
   concurrentClients: 3,
   revenueGoal: 370000,
+  vacationWeeks: 4,
+  conferences: 3,
+  yearsFractional: 2,
 };
 
 function loadSettings(): AppSettings {

@@ -11,6 +11,9 @@ export default function Settings() {
   const [jobTitle, setJobTitle] = useState(settings.jobTitle);
   const [concurrentClients, setConcurrentClients] = useState(String(settings.concurrentClients));
   const [revenueGoal, setRevenueGoal] = useState(String(settings.revenueGoal / 1000));
+  const [vacationWeeks, setVacationWeeks] = useState(String(settings.vacationWeeks));
+  const [conferences, setConferences] = useState(String(settings.conferences));
+  const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -19,6 +22,9 @@ export default function Settings() {
       jobTitle,
       concurrentClients: Number(concurrentClients) || 3,
       revenueGoal: (Number(revenueGoal) || 370) * 1000,
+      vacationWeeks: Number(vacationWeeks) || 4,
+      conferences: Number(conferences) || 3,
+      yearsFractional: Number(yearsFractional) || 2,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -110,6 +116,51 @@ export default function Settings() {
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">k</span>
               </div>
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Vacation Weeks / Year
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="52"
+                value={vacationWeeks}
+                onChange={(e) => setVacationWeeks(e.target.value)}
+                className={inputClass}
+                placeholder="4"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Conferences / Year
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="20"
+                value={conferences}
+                onChange={(e) => setConferences(e.target.value)}
+                className={inputClass}
+                placeholder="3"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Years as Fractional
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="50"
+                value={yearsFractional}
+                onChange={(e) => setYearsFractional(e.target.value)}
+                className={inputClass}
+                placeholder="2"
+              />
             </div>
           </div>
 
