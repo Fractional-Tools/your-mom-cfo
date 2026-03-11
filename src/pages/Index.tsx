@@ -138,6 +138,11 @@ const Index = () => {
             />
           </motion.div>
         )}
+        {currentSlide === 6 && (
+          <motion.div key="slide-6" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Navigation dots */}
