@@ -38,7 +38,7 @@ const Present = () => {
   const tone: StoryTone = "balanced";
   const isPaid = true;
 
-  const totalSlides = 9;
+  const totalSlides = 10;
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
