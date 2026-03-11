@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import ProfileFooter from "@/components/ProfileFooter";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
@@ -195,18 +195,7 @@ const Index = () => {
         </button>
       </div>
 
-      {/* Profile link */}
-      <Link
-        to="/profile"
-        className="fixed bottom-7 right-6 z-50 flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors group"
-      >
-        <span className="opacity-0 group-hover:opacity-100 transition-opacity">Alex Reyes</span>
-        <img
-          src={profilePhoto}
-          alt="Profile"
-          className="w-7 h-7 rounded-full object-cover ring-2 ring-border group-hover:ring-foreground/20 transition-all"
-        />
-      </Link>
+      <ProfileFooter />
     </div>
   );
 };

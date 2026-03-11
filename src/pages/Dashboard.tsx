@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
 import { ALL_METRICS, type MetricId } from "@/types/metrics";
+import ProfileFooter from "@/components/ProfileFooter";
 
 type Tab = "metrics" | "priorities" | "actions";
 
@@ -444,6 +445,7 @@ export default function Dashboard() {
           {activeTab === "actions" && <ActionsTab />}
         </motion.div>
       </div>
+      <ProfileFooter />
     </div>
   );
 }
