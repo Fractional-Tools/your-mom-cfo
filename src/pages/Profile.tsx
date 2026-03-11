@@ -84,7 +84,7 @@ export default function Profile() {
               </p>
               <p className="font-display text-xl font-bold text-foreground flex items-center justify-center gap-1.5">
                 {s.value}
-                {s.label === "Time off" && <Umbrella className="w-5 h-5 text-muted-foreground" />}
+                {s.label === "Time off" && <img src={vacationIcon} alt="Vacation" className="w-6 h-6" />}
               </p>
             </div>
           ))}
