@@ -14,6 +14,7 @@ import ClientGradeSlide from "@/components/ClientGradeSlide";
 import VacationSlide from "@/components/VacationSlide";
 import GrowthSlide from "@/components/GrowthSlide";
 import EngagementSlide from "@/components/EngagementSlide";
+import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
 const STORY_TITLES = [
@@ -27,6 +28,7 @@ const STORY_TITLES = [
   "Time Off",
   "Growth Capacity",
   "Client Retention",
+  "Get Started",
 ];
 
 const Present = () => {
@@ -40,7 +42,7 @@ const Present = () => {
   const tone: StoryTone = "balanced";
   const isPaid = true;
 
-  const totalSlides = 10;
+  const totalSlides = 11;
   const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
@@ -130,6 +132,7 @@ const Present = () => {
       { name: "Bright Labs", months: 7, active: true },
       { name: "Cedar Health", months: 3, active: true },
     ]} isPaid={isPaid} tone={tone} />,
+    <CTASlide key="s-cta" />,
   ];
 
   return (

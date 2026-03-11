@@ -15,6 +15,7 @@ import ClientGradeSlide from "@/components/ClientGradeSlide";
 import VacationSlide from "@/components/VacationSlide";
 import GrowthSlide from "@/components/GrowthSlide";
 import EngagementSlide from "@/components/EngagementSlide";
+import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
@@ -34,7 +35,7 @@ const Index = () => {
   const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 10;
+  const totalSlides = 11;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -168,6 +169,11 @@ const Index = () => {
               ]}
               isPaid={isPaid} tone={tone}
             />
+          </motion.div>
+        )}
+        {currentSlide === 10 && (
+          <motion.div key="slide-10" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <CTASlide />
           </motion.div>
         )}
       </AnimatePresence>
