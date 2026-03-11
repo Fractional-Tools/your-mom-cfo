@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface WorkBalanceSlideProps {
-  offHoursPct: number; // % of total hours worked outside 9-5 M-F
+  offHoursPct: number;
   weekendHours: number;
   eveningHours: number;
   totalHoursThisWeek: number;
+  isPaid?: boolean;
 }
 
 export default function WorkBalanceSlide({
