@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { LayoutGrid, List, Star, GripVertical, Heart, Circle, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
 import { ALL_METRICS, type MetricId } from "@/types/metrics";
