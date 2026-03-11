@@ -166,6 +166,19 @@ export default function Settings() {
 
             <div>
               <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Profile Title
+              </label>
+              <input
+                type="text"
+                value={profileTitle}
+                onChange={(e) => setProfileTitle(e.target.value)}
+                className={inputClass}
+                placeholder="Your Fractional Report"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 Name
               </label>
               <input
