@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Sun, Scale, AlertTriangle } from "lucide-react";
-import { useSettings } from "@/hooks/use-settings";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle, Check } from "lucide-react";
+import { useSettings, type Pronouns } from "@/hooks/use-settings";
 import type { StoryTone } from "@/types/tone";
+import { AVATARS } from "@/lib/avatars";
 import ftLogo from "@/assets/ft-logo.png";
 
 const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; description: string }[] = [
