@@ -26,7 +26,7 @@ export default function Profile() {
             <ArrowLeft className="w-4 h-4" />
             Back
           </Link>
-          <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto" />
+          <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto dark:invert" />
         </div>
 
         {/* Photo + Name */}

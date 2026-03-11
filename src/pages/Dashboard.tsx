@@ -397,7 +397,7 @@ export default function Dashboard() {
         {/* Logo + Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0" />
+            <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0 dark:invert" />
             <div>
               <h1 className="font-display text-2xl text-foreground">Your Dashboard</h1>
               <p className="text-sm text-muted-foreground mt-0.5">July 1 · Halftime</p>

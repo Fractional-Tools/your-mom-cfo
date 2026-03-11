@@ -40,7 +40,7 @@ const Index = () => {
     <div className="relative min-h-screen bg-background">
       {/* Top bar */}
       <div className="fixed top-6 left-6 z-50 flex items-center gap-3">
-        <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0" />
+        <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0 dark:invert" />
         <Link
           to="/dashboard"
           className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
