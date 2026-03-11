@@ -29,6 +29,7 @@ export default function Settings() {
   const [tone, setTone] = useState<StoryTone>(settings.tone);
   const [avatarId, setAvatarId] = useState(settings.avatarId);
   const [pronouns, setPronouns] = useState<Pronouns>(settings.pronouns);
+  const [profileTitle, setProfileTitle] = useState(settings.profileTitle);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -44,6 +45,7 @@ export default function Settings() {
       tone,
       avatarId,
       pronouns,
+      profileTitle,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -160,6 +162,19 @@ export default function Settings() {
                   </button>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Profile Title
+              </label>
+              <input
+                type="text"
+                value={profileTitle}
+                onChange={(e) => setProfileTitle(e.target.value)}
+                className={inputClass}
+                placeholder="Your Fractional Report"
+              />
             </div>
 
             <div>
