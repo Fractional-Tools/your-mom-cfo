@@ -86,6 +86,23 @@ const Index = () => {
             />
           </motion.div>
         )}
+        {currentSlide === 4 && (
+          <motion.div
+            key="slide-4"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <ClientValueSlide
+              clients={[
+                { name: "Acme Corp", revenue: 12000, hoursPerMonth: 48 },
+                { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
+                { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
+              ]}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Navigation dots */}
