@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import DeepDive from "./DeepDive";
 
 interface Client {
   name: string;
@@ -8,6 +9,7 @@ interface Client {
 
 interface ClientValueSlideProps {
   clients: Client[];
+  isPaid?: boolean;
 }
 
 export default function ClientValueSlide({ clients }: ClientValueSlideProps) {
