@@ -16,6 +16,7 @@ import EngagementSlide from "@/components/EngagementSlide";
 import type { StoryTone } from "@/types/tone";
 
 const STORY_TITLES = [
+  "Meet Alex",
   "The Big Picture",
   "Time Allocation",
   "Context Switching",
