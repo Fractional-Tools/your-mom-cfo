@@ -11,6 +11,9 @@ export default function Settings() {
   const [jobTitle, setJobTitle] = useState(settings.jobTitle);
   const [concurrentClients, setConcurrentClients] = useState(String(settings.concurrentClients));
   const [revenueGoal, setRevenueGoal] = useState(String(settings.revenueGoal / 1000));
+  const [vacationWeeks, setVacationWeeks] = useState(String(settings.vacationWeeks));
+  const [conferences, setConferences] = useState(String(settings.conferences));
+  const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
