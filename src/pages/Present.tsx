@@ -181,7 +181,7 @@ const Present = () => {
       >
         {/* Top bar */}
         <div className="pointer-events-auto absolute top-6 left-6 flex items-center gap-3">
-          <img src={ftLogo} alt="Fractional Tools" className="w-6 h-6 opacity-60" />
+          <img src={ftLogo} alt="Fractional Tools" className="h-8 w-auto shrink-0 opacity-60" />
         </div>
         <div className="pointer-events-auto absolute top-6 right-6 flex items-center gap-2">
           <button onClick={toggleFullscreen} className="p-2 rounded-full bg-foreground/10 hover:bg-foreground/20 text-foreground/60 hover:text-foreground transition-all">
