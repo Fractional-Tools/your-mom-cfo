@@ -14,6 +14,7 @@ export default function Settings() {
   const [vacationWeeks, setVacationWeeks] = useState(String(settings.vacationWeeks));
   const [conferences, setConferences] = useState(String(settings.conferences));
   const [yearsFractional, setYearsFractional] = useState(String(settings.yearsFractional));
+  const [targetBillRate, setTargetBillRate] = useState(String(settings.targetBillRate));
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -25,6 +26,7 @@ export default function Settings() {
       vacationWeeks: Number(vacationWeeks) || 4,
       conferences: Number(conferences) || 3,
       yearsFractional: Number(yearsFractional) || 2,
+      targetBillRate: Number(targetBillRate) || 200,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -161,6 +163,24 @@ export default function Settings() {
                 className={inputClass}
                 placeholder="2"
               />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Target Bill Rate
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={targetBillRate}
+                  onChange={(e) => setTargetBillRate(e.target.value)}
+                  className={`${inputClass} pl-8`}
+                  placeholder="200"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">/hr</span>
+              </div>
             </div>
           </div>
 
