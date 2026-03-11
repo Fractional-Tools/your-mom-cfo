@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
+import { useSettings } from "@/hooks/use-settings";
 import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
