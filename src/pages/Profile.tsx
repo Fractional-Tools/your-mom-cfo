@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
 import vacationIcon from "@/assets/vacation-icon.png";
 import ftLogo from "@/assets/ft-logo.png";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import { getAvatarSrc } from "@/lib/avatars";
 import { useSettings } from "@/hooks/use-settings";
 
 export default function Profile() {
