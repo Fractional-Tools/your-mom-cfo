@@ -32,6 +32,15 @@ All colors MUST be HSL.
     --ahead: 150 45% 42%;
     --behind: 0 65% 55%;
     --neutral-detail: 30 8% 62%;
+    --sidebar-background: 36 33% 95%;
+    --sidebar-foreground: 30 10% 22%;
+    --sidebar-primary: 150 35% 38%;
+    --sidebar-primary-foreground: 36 33% 97%;
+    --sidebar-accent: 30 20% 90%;
+    --sidebar-accent-foreground: 30 10% 22%;
+    --sidebar-border: 30 15% 88%;
+    --sidebar-ring: 150 35% 38%;
+  }
 
   .dark {
     --background: 222.2 84% 4.9%;
