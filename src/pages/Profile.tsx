@@ -7,7 +7,7 @@ import { getAvatarSrc } from "@/lib/avatars";
 import { useSettings } from "@/hooks/use-settings";
 
 export default function Profile() {
-  const { settings } = useSettings();
+  const { settings, pronoun } = useSettings();
 
   const stats = [
     { label: "Role", value: settings.jobTitle.replace("Fractional ", "") },
