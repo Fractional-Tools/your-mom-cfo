@@ -22,6 +22,9 @@ export default function Settings() {
       jobTitle,
       concurrentClients: Number(concurrentClients) || 3,
       revenueGoal: (Number(revenueGoal) || 370) * 1000,
+      vacationWeeks: Number(vacationWeeks) || 4,
+      conferences: Number(conferences) || 3,
+      yearsFractional: Number(yearsFractional) || 2,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
