@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Sun, Scale, AlertTriangle } from "lucide-react";
 import { useSettings } from "@/hooks/use-settings";
+import type { StoryTone } from "@/types/tone";
 import ftLogo from "@/assets/ft-logo.png";
+
+const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; description: string }[] = [
+  { mode: "wins", icon: Sun, label: "What's working", description: "Focus on positive trends and achievements" },
+  { mode: "balanced", icon: Scale, label: "Balanced", description: "Mix of wins and areas for improvement" },
+  { mode: "issues", icon: AlertTriangle, label: "What needs change", description: "Focus on areas that need attention" },
+];
 
 export default function Settings() {
   const { settings, setSettings } = useSettings();
