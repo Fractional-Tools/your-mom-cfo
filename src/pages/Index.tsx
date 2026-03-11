@@ -1,13 +1,19 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import MomCFOSlide from "@/components/MomCFOSlide";
 
 const Index = () => {
+  // July 1 = day 182, target $340k, 10% ahead at halftime
+  // Expected at halftime: $340k * 0.4986 ≈ $169.5k
+  // 10% ahead of expected: ~$186.5k
+  const expectedAtHalftime = 340000 * (182 / 365);
+  const currentRevenue = Math.round(expectedAtHalftime * 1.1);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <MomCFOSlide
+      targetRevenue={340000}
+      currentRevenue={currentRevenue}
+      dayOfYear={182}
+      totalDays={365}
+    />
   );
 };
 
