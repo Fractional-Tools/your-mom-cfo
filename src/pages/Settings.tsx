@@ -70,6 +70,35 @@ export default function Settings() {
           </p>
 
           <div className="space-y-6">
+            {/* Tone selector */}
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-3">
+                Slide Tone
+              </label>
+              <div className="grid gap-2">
+                {toneOptions.map(({ mode, icon: Icon, label, description }) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setTone(mode)}
+                    className={`flex items-center gap-3 w-full rounded-xl p-4 text-left transition-all border ${
+                      tone === mode
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-background border-border hover:border-foreground/30"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium">{label}</p>
+                      <p className={`text-xs mt-0.5 ${tone === mode ? "text-background/70" : "text-muted-foreground"}`}>
+                        {description}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 Name
