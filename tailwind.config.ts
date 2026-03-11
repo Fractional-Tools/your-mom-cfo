@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["Georgia", "Cambria", "Times New Roman", "serif"],
+        body: ["system-ui", "-apple-system", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +61,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "warm-glow": "hsl(var(--warm-glow))",
+        ahead: "hsl(var(--ahead))",
+        behind: "hsl(var(--behind))",
+        "neutral-detail": "hsl(var(--neutral-detail))",
       },
       borderRadius: {
         lg: "var(--radius)",
