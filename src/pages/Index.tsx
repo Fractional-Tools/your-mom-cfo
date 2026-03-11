@@ -83,7 +83,7 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {currentSlide === 0 && (
           <motion.div key="slide-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} />
+            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 1 && (
