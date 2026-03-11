@@ -12,7 +12,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 3;
+  const totalSlides = 4;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
