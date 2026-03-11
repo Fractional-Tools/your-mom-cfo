@@ -32,7 +32,31 @@ const Index = () => {
   return (
     <div className="relative min-h-screen bg-background">
       {/* Top bar */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-6 left-6 z-50 flex items-center gap-3">
+        <Link
+          to="/dashboard"
+          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
+        >
+          Dashboard →
+        </Link>
+        {/* Tone switcher */}
+        <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
+          {toneOptions.map(({ mode, icon: Icon, label }) => (
+            <button
+              key={mode}
+              onClick={() => setTone(mode)}
+              className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded-full transition-all ${
+                tone === mode
+                  ? "bg-foreground text-background font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon className="w-3 h-3" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
         <Link
           to="/dashboard"
           className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm underline-offset-2"
