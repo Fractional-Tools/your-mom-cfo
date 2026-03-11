@@ -108,6 +108,10 @@ export default function ContextSwitchSlide({
             {getMomTake()}
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="Get a plan to cut your switch tax in half." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[

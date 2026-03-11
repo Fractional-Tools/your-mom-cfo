@@ -124,6 +124,10 @@ export default function UtilizationSlide({
             {getMomTake()}
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="See your utilization trend and how you compare to other fractionals." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[

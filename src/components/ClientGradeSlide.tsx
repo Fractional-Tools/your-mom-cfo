@@ -105,6 +105,10 @@ export default function ClientGradeSlide({ clients, isPaid = false }: ClientGrad
             {getMomTake()}
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="Get specific advice on your toughest client." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[

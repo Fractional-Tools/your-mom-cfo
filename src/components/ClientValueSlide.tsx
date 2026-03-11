@@ -151,6 +151,10 @@ export default function ClientValueSlide({ clients, isPaid = false }: ClientValu
             {getMomTake()}
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="See what a rate increase would mean for your year." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[

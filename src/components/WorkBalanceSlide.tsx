@@ -129,6 +129,10 @@ export default function WorkBalanceSlide({
             {getMomTake()}
           </motion.p>
 
+          {!isPaid && (
+            <UpgradeNudge hint="See which clients are pushing you into off-hours." />
+          )}
+
           {isPaid && (
             <DeepDive
               details={[
