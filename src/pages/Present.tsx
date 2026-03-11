@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
+import { useSettings } from "@/hooks/use-settings";
 import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
@@ -30,6 +31,7 @@ const STORY_TITLES = [
 
 const Present = () => {
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -39,7 +41,7 @@ const Present = () => {
   const isPaid = true;
 
   const totalSlides = 10;
-  const expectedAtHalftime = 340000 * (182 / 365);
+  const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
   const goNext = useCallback(() => {
@@ -107,7 +109,7 @@ const Present = () => {
 
   const slides = [
     <IntroSlide key="s-intro" />,
-    <MomCFOSlide key="s0" targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
+    <MomCFOSlide key="s0" targetRevenue={settings.revenueGoal} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
     <UtilizationSlide key="s1" currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />,
     <ContextSwitchSlide key="s2" hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />,
     <WorkBalanceSlide key="s3" offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} tone={tone} />,

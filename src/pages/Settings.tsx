@@ -1,0 +1,127 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowLeft, Save } from "lucide-react";
+import { useSettings } from "@/hooks/use-settings";
+import ftLogo from "@/assets/ft-logo.png";
+
+export default function Settings() {
+  const { settings, setSettings } = useSettings();
+  const [name, setName] = useState(settings.name);
+  const [jobTitle, setJobTitle] = useState(settings.jobTitle);
+  const [concurrentClients, setConcurrentClients] = useState(String(settings.concurrentClients));
+  const [revenueGoal, setRevenueGoal] = useState(String(settings.revenueGoal / 1000));
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    setSettings({
+      name,
+      jobTitle,
+      concurrentClients: Number(concurrentClients) || 3,
+      revenueGoal: (Number(revenueGoal) || 370) * 1000,
+    });
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  const inputClass =
+    "w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground font-body text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all";
+
+  return (
+    <div className="min-h-screen bg-background p-6 md:p-10 font-body">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-12">
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Link>
+          <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto dark:invert" />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="font-display text-3xl text-foreground mb-2">Settings</h1>
+          <p className="text-muted-foreground text-sm mb-10">
+            These values are used across your slides and profile.
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={inputClass}
+                placeholder="Alex Reyes"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Job Title
+              </label>
+              <input
+                type="text"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+                className={inputClass}
+                placeholder="Fractional Chief Product Officer"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Concurrent Clients
+              </label>
+              <input
+                type="number"
+                min="1"
+                max="20"
+                value={concurrentClients}
+                onChange={(e) => setConcurrentClients(e.target.value)}
+                className={inputClass}
+                placeholder="3"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                Revenue Goal (k/year)
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={revenueGoal}
+                  onChange={(e) => setRevenueGoal(e.target.value)}
+                  className={`${inputClass} pl-8`}
+                  placeholder="370"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">k</span>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={handleSave}
+            className="mt-10 w-full flex items-center justify-center gap-2 bg-foreground text-background rounded-xl px-6 py-3 text-sm font-medium hover:bg-foreground/90 transition-colors"
+          >
+            <Save className="w-4 h-4" />
+            {saved ? "Saved ✓" : "Save Settings"}
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

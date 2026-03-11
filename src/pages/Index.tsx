@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
+import { useSettings } from "@/hooks/use-settings";
 import ProfileFooter from "@/components/ProfileFooter";
 import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
@@ -23,13 +24,14 @@ const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
 ];
 
 const Index = () => {
+  const { settings } = useSettings();
   const [searchParams] = useSearchParams();
   const initialSlide = Number(searchParams.get("slide") || 0);
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [isPaid, setIsPaid] = useState(false);
   const [tone, setTone] = useState<StoryTone>("balanced");
 
-  const expectedAtHalftime = 340000 * (182 / 365);
+  const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
   const totalSlides = 10;
@@ -104,7 +106,7 @@ const Index = () => {
         )}
         {currentSlide === 1 && (
           <motion.div key="slide-1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
-            <MomCFOSlide targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
+            <MomCFOSlide targetRevenue={settings.revenueGoal} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
         {currentSlide === 2 && (

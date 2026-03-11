@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Presentation, LayoutDashboard, Play } from "lucide-react";
+import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
-
-const stats = [
-  { label: "Role", value: "Fractional CPO" },
-  { label: "Experience", value: "2 years fractional" },
-  { label: "Clients / year", value: "4–6" },
-  { label: "Current clients", value: "2.5 avg" },
-  { label: "Revenue goal", value: "$370k / yr" },
-  { label: "Time off", value: "4 weeks + 3 conferences" },
-];
+import { useSettings } from "@/hooks/use-settings";
 
 export default function Profile() {
+  const { settings } = useSettings();
+
+  const stats = [
+    { label: "Role", value: settings.jobTitle.replace("Fractional ", "") },
+    { label: "Experience", value: "2 years fractional" },
+    { label: "Clients / year", value: "4–6" },
+    { label: "Current clients", value: `${settings.concurrentClients}` },
+    { label: "Revenue goal", value: `$${Math.round(settings.revenueGoal / 1000)}k / yr` },
+    { label: "Time off", value: "4 weeks + 3 conferences" },
+  ];
+
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-xl mx-auto">
@@ -34,8 +37,8 @@ export default function Profile() {
             alt="Profile photo"
             className="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-warm-glow"
           />
-          <h1 className="font-display text-3xl text-foreground mb-1">Alex Reyes</h1>
-          <p className="text-muted-foreground text-sm mb-5">Fractional Chief Product Officer</p>
+          <h1 className="font-display text-3xl text-foreground mb-1">{settings.name}</h1>
+          <p className="text-muted-foreground text-sm mb-5">{settings.jobTitle}</p>
 
           {/* Launch options */}
           <div className="flex items-center gap-3">
@@ -93,9 +96,9 @@ export default function Profile() {
           className="bg-warm-glow/50 rounded-xl p-6"
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Alex has spent two years as a fractional CPO, partnering with 4–6 companies per year
-            to shape product strategy without the overhead of a full-time hire. Currently splitting
-            time across ~2.5 clients, Alex brings focused, senior product leadership to each
+            {settings.name} works as a {settings.jobTitle.toLowerCase()}, partnering with companies
+            to shape product strategy without the overhead of a full-time hire. Currently working
+            with {settings.concurrentClients} clients, bringing focused, senior leadership to each
             engagement — helping teams ship faster and prioritize better.
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed mt-4">
@@ -104,6 +107,17 @@ export default function Profile() {
             fractional executives understand how their practice is performing at a glance.
           </p>
         </motion.div>
+
+        {/* Settings link */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/settings"
+            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Settings className="w-3.5 h-3.5" />
+            Settings
+          </Link>
+        </div>
       </div>
     </div>
   );

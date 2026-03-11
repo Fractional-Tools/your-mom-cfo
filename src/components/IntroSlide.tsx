@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import ftLogo from "@/assets/ft-logo.png";
+import { useSettings } from "@/hooks/use-settings";
 
 export default function IntroSlide() {
+  const { settings } = useSettings();
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-6 font-body">
       <motion.div
@@ -15,7 +18,7 @@ export default function IntroSlide() {
           <div className="flex flex-col items-center text-center">
             <motion.img
               src={profilePhoto}
-              alt="Alex Reyes"
+              alt={settings.name}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -27,7 +30,7 @@ export default function IntroSlide() {
               transition={{ delay: 0.5, duration: 0.7 }}
               className="font-display text-4xl md:text-5xl leading-tight text-foreground mb-2"
             >
-              Alex Reyes
+              {settings.name}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -35,7 +38,7 @@ export default function IntroSlide() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="text-muted-foreground text-sm font-body tracking-wide uppercase mb-8"
             >
-              Fractional Chief Product Officer
+              {settings.jobTitle}
             </motion.p>
             <motion.p
               initial={{ opacity: 0 }}

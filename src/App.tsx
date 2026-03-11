@@ -12,6 +12,7 @@ import HowItWorks from "./pages/HowItWorks.tsx";
 import Actions from "./pages/Actions.tsx";
 import Present from "./pages/Present.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Settings from "./pages/Settings.tsx";
 import Profile from "./pages/Profile.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/actions" element={<Actions />} />
               <Route path="/present" element={<Present />} />
+              <Route path="/settings" element={<Settings />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
