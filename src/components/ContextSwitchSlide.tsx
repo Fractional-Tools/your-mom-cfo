@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import FavoriteButton from "./FavoriteButton";
 import type { StoryTone } from "@/types/tone";
 
 interface ContextSwitchSlideProps {
@@ -49,15 +50,17 @@ export default function ContextSwitchSlide({
         className="w-full max-w-lg mx-auto"
       >
         <div className="bg-warm-glow rounded-2xl p-10 md:p-14 shadow-sm">
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-muted-foreground text-sm font-body tracking-wide uppercase mb-6"
-          >
-            {activeClients} Active Clients · Switch Tax
-          </motion.p>
+          <div className="flex items-start justify-between mb-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-muted-foreground text-sm font-body tracking-wide uppercase"
+            >
+              {activeClients} Active Clients · Switch Tax
+            </motion.p>
+            <FavoriteButton metricId="switching" />
+          </div>
 
           {/* Headline number */}
           <motion.div
