@@ -26,6 +26,7 @@ export default function Settings() {
       vacationWeeks: Number(vacationWeeks) || 4,
       conferences: Number(conferences) || 3,
       yearsFractional: Number(yearsFractional) || 2,
+      targetBillRate: Number(targetBillRate) || 200,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
