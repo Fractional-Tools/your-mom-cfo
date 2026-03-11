@@ -45,18 +45,6 @@ const Index = () => {
           Dashboard →
         </Link>
         <Link
-          to="/priorities"
-          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
-        >
-          Priorities
-        </Link>
-        <Link
-          to="/actions"
-          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
-        >
-          Actions
-        </Link>
-        <Link
           to="/present"
           className="flex items-center gap-1.5 text-xs font-body text-background bg-foreground hover:bg-foreground/90 transition-colors rounded-full px-4 py-2 shadow-sm"
         >
