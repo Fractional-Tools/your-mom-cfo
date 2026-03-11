@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
+import { useSettings } from "@/hooks/use-settings";
 import { ALL_METRICS, type MetricId } from "@/types/metrics";
 import ProfileFooter from "@/components/ProfileFooter";
 
