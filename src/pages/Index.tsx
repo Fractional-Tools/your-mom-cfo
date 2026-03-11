@@ -56,6 +56,13 @@ const Index = () => {
         >
           Actions
         </Link>
+        <Link
+          to="/present"
+          className="flex items-center gap-1.5 text-xs font-body text-background bg-foreground hover:bg-foreground/90 transition-colors rounded-full px-4 py-2 shadow-sm"
+        >
+          <Presentation className="w-3.5 h-3.5" />
+          Present
+        </Link>
         {/* Tone switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
           {toneOptions.map(({ mode, icon: Icon, label }) => (
