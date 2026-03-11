@@ -45,6 +45,7 @@ export default function Settings() {
       tone,
       avatarId,
       pronouns,
+      profileTitle,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
