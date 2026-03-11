@@ -5,6 +5,7 @@ import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
 import ClientValueSlide from "@/components/ClientValueSlide";
+import ClientGradeSlide from "@/components/ClientGradeSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,7 +14,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 5;
+  const totalSlides = 6;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -99,6 +100,23 @@ const Index = () => {
                 { name: "Acme Corp", revenue: 12000, hoursPerMonth: 48 },
                 { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
                 { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
+              ]}
+            />
+          </motion.div>
+        )}
+        {currentSlide === 5 && (
+          <motion.div
+            key="slide-5"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <ClientGradeSlide
+              clients={[
+                { name: "Acme Corp", grade: "A", paysOnTime: true, steadyWork: true, lowSwitchCost: true },
+                { name: "Bright Labs", grade: "B", paysOnTime: true, steadyWork: true, lowSwitchCost: false },
+                { name: "Cedar Health", grade: "C", paysOnTime: false, steadyWork: true, lowSwitchCost: false },
               ]}
             />
           </motion.div>
