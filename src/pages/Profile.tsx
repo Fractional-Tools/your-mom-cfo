@@ -18,14 +18,7 @@ export default function Profile() {
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Link>
+        <div className="flex items-center justify-center mb-12">
           <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto dark:invert" />
         </div>
 
