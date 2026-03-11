@@ -81,7 +81,8 @@ export default function Profile() {
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 {s.label}
               </p>
-              <p className="font-display text-xl font-bold text-foreground">
+              <p className="font-display text-xl font-bold text-foreground inline-flex items-center gap-1.5">
+                {s.label === "Time off" && <Umbrella className="w-5 h-5 text-muted-foreground" />}
                 {s.value}
               </p>
             </div>
