@@ -4,6 +4,7 @@ import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
 import WorkBalanceSlide from "@/components/WorkBalanceSlide";
+import ClientValueSlide from "@/components/ClientValueSlide";
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,7 +13,7 @@ const Index = () => {
   const expectedAtHalftime = 340000 * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
-  const totalSlides = 4;
+  const totalSlides = 5;
 
   const goNext = () => setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
   const goPrev = () => setCurrentSlide((s) => Math.max(s - 1, 0));
@@ -82,6 +83,23 @@ const Index = () => {
               weekendHours={6}
               eveningHours={8}
               totalHoursThisWeek={48}
+            />
+          </motion.div>
+        )}
+        {currentSlide === 4 && (
+          <motion.div
+            key="slide-4"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35 }}
+          >
+            <ClientValueSlide
+              clients={[
+                { name: "Acme Corp", revenue: 12000, hoursPerMonth: 48 },
+                { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
+                { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
+              ]}
             />
           </motion.div>
         )}
