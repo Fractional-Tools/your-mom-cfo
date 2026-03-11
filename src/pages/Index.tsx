@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Sun, AlertTriangle, Scale } from "lucide-react";
+import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
@@ -55,6 +55,13 @@ const Index = () => {
           className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
         >
           Actions
+        </Link>
+        <Link
+          to="/present"
+          className="flex items-center gap-1.5 text-xs font-body text-background bg-foreground hover:bg-foreground/90 transition-colors rounded-full px-4 py-2 shadow-sm"
+        >
+          <Presentation className="w-3.5 h-3.5" />
+          Present
         </Link>
         {/* Tone switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
