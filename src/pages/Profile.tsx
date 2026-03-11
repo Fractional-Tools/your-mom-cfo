@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Presentation, LayoutDashboard, Play, Settings, Umbrella } from "lucide-react";
+import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
+import vacationIcon from "@/assets/vacation-icon.png";
 import ftLogo from "@/assets/ft-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import { useSettings } from "@/hooks/use-settings";
