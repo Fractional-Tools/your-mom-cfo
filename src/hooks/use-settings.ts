@@ -8,6 +8,7 @@ export interface AppSettings {
   vacationWeeks: number;
   conferences: number;
   yearsFractional: number;
+  targetBillRate: number;
 }
 
 const STORAGE_KEY = "ft-settings";
@@ -20,6 +21,7 @@ const DEFAULTS: AppSettings = {
   vacationWeeks: 4,
   conferences: 3,
   yearsFractional: 2,
+  targetBillRate: 200,
 };
 
 function loadSettings(): AppSettings {
