@@ -18,5 +18,5 @@ export const ALL_METRICS: MetricInfo[] = [
 
 // Map slide index to metric id
 export const SLIDE_METRIC_MAP: MetricId[] = [
-  "revenue", "utilization", "switching", "balance", "client-value", "client-health"
+  "revenue", "utilization", "switching", "balance", "client-value", "client-health", "vacation"
 ];
