@@ -145,6 +145,23 @@ const Index = () => {
             <VacationSlide daysTakenThisYear={5} daysPlanned={3} targetDays={20} lastVacationWeeksAgo={10} isPaid={isPaid} tone={tone} />
           </motion.div>
         )}
+        {currentSlide === 7 && (
+          <motion.div key="slide-7" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <GrowthSlide capacityClients={1.24} currentClients={3} availableHoursPerWeek={20} avgHoursPerClient={16} isPaid={isPaid} tone={tone} />
+          </motion.div>
+        )}
+        {currentSlide === 8 && (
+          <motion.div key="slide-8" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.35 }}>
+            <EngagementSlide
+              clients={[
+                { name: "Acme Corp", months: 18, active: true },
+                { name: "Bright Labs", months: 7, active: true },
+                { name: "Cedar Health", months: 3, active: true },
+              ]}
+              isPaid={isPaid} tone={tone}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Navigation dots */}
