@@ -31,6 +31,7 @@ const STORY_TITLES = [
 
 const Present = () => {
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
