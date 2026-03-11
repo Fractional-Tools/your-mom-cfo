@@ -267,6 +267,7 @@ const tabs: { id: Tab; label: string }[] = [
 // ─── Main Dashboard ───
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<Tab>("metrics");
+  const [isPaid, setIsPaid] = useState(false);
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
