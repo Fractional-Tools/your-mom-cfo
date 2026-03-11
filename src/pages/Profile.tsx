@@ -23,7 +23,7 @@ export default function Profile() {
       <div className="max-w-xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-center mb-12">
-          <h2 className="font-display text-2xl text-foreground">How fractional are you?</h2>
+          <h2 className="font-display text-2xl text-foreground">The State of Your Practice</h2>
         </div>
 
         {/* Photo + Name */}
