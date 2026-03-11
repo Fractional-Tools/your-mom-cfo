@@ -28,6 +28,7 @@ const STORY_TITLES = [
   "Time Off",
   "Growth Capacity",
   "Client Retention",
+  "Get Started",
 ];
 
 const Present = () => {
