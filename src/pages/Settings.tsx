@@ -16,6 +16,8 @@ const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string; descripti
 
 export default function Settings() {
   const { settings, setSettings } = useSettings();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState(settings.name);
   const [jobTitle, setJobTitle] = useState(settings.jobTitle);
   const [concurrentClients, setConcurrentClients] = useState(String(settings.concurrentClients));
