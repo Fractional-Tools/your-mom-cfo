@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DeepDive from "./DeepDive";
 import UpgradeNudge from "./UpgradeNudge";
+import type { StoryTone } from "@/types/tone";
 
 interface ContextSwitchSlideProps {
   hoursLostPerWeek: number;
@@ -8,6 +9,7 @@ interface ContextSwitchSlideProps {
   activeClients: number;
   costPerHour: number;
   isPaid?: boolean;
+  tone?: StoryTone;
 }
 
 export default function ContextSwitchSlide({
@@ -16,6 +18,7 @@ export default function ContextSwitchSlide({
   activeClients,
   costPerHour,
   isPaid = false,
+  tone = "balanced",
 }: ContextSwitchSlideProps) {
   const weeklyDollarCost = Math.round(hoursLostPerWeek * costPerHour);
   const monthlyCost = weeklyDollarCost * 4;
