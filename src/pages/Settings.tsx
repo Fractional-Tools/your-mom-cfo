@@ -39,6 +39,8 @@ export default function Settings() {
       yearsFractional: Number(yearsFractional) || 2,
       targetBillRate: Number(targetBillRate) || 200,
       tone,
+      avatarId,
+      pronouns,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
