@@ -46,7 +46,7 @@ export default function IntroSlide() {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="font-display text-xl md:text-2xl text-foreground/80 leading-relaxed mb-8"
             >
-              This is the virtual CFO that keeps him{" "}
+              This is the virtual CFO that keeps {pronoun.object}{" "}
               <span className="text-foreground font-semibold">on track</span>,{" "}
               <span className="text-foreground font-semibold">current</span>, and{" "}
               <span className="text-foreground font-semibold">happy</span> about being fractional.
