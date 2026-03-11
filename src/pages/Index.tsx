@@ -45,6 +45,12 @@ const Index = () => {
         >
           Priorities
         </Link>
+        <Link
+          to="/actions"
+          className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors bg-warm-glow rounded-full px-4 py-2 shadow-sm"
+        >
+          Actions
+        </Link>
         {/* Tone switcher */}
         <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
           {toneOptions.map(({ mode, icon: Icon, label }) => (
