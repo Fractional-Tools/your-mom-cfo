@@ -10,12 +10,12 @@ type Tab = "metrics" | "priorities" | "actions";
 
 // ─── Metrics Data ───
 const metrics = [
-  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead" },
-  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground" },
-  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind" },
-  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind" },
-  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead" },
-  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground" },
+  { label: "On Track", value: "+10%", sub: "ahead of $340k goal", color: "text-ahead", slide: 0 },
+  { label: "Utilization", value: "68%", sub: "109h of 160h billed", color: "text-foreground", slide: 1 },
+  { label: "Switch Tax", value: "6.5h", sub: "lost per week", color: "text-behind", slide: 2 },
+  { label: "Off-Hours", value: "28%", sub: "outside 9–5", color: "text-behind", slide: 3 },
+  { label: "Top Rate", value: "$250", sub: "/hr · Acme Corp", color: "text-ahead", slide: 4 },
+  { label: "Client Health", value: "B+", sub: "avg across 3 clients", color: "text-foreground", slide: 5 },
 ];
 
 // ─── Actions Data ───
