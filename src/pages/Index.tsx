@@ -109,7 +109,7 @@ const Index = () => {
                 { name: "Bright Labs", revenue: 8000, hoursPerMonth: 32 },
                 { name: "Cedar Health", revenue: 5500, hoursPerMonth: 36 },
               ]}
-              isPaid={isPaid}
+              isPaid={isPaid} tone={tone}
             />
           </motion.div>
         )}
