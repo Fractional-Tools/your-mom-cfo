@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { LayoutGrid, List, Star, GripVertical, Heart, Circle, ArrowRight } from "lucide-react";
+import { LayoutGrid, List, Star, GripVertical, Heart, Circle, ArrowRight, Focus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import ftLogo from "@/assets/ft-logo.png";
 import { usePriorities } from "@/contexts/PrioritiesContext";
@@ -72,12 +72,17 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
   ],
 };
 
-type MetricsView = "cards" | "list";
+type MetricsView = "cards" | "list" | "focus";
 
 // ─── Metrics Tab ───
 function MetricsTab() {
   const navigate = useNavigate();
   const [view, setView] = useState<MetricsView>("cards");
+  const [focusIdx, setFocusIdx] = useState(0);
+
+  const primary = metrics[focusIdx];
+  const sub1 = metrics[(focusIdx + 1) % metrics.length];
+  const sub2 = metrics[(focusIdx + 2) % metrics.length];
 
   return (
     <div>
@@ -101,6 +106,15 @@ function MetricsTab() {
         >
           <List className="w-3.5 h-3.5" />
         </button>
+        <button
+          onClick={() => setView("focus")}
+          className={`p-1.5 rounded-full transition-all ${
+            view === "focus" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+          }`}
+          title="Focus view"
+        >
+          <Focus className="w-3.5 h-3.5" />
+        </button>
       </div>
 
       {view === "cards" ? (
@@ -123,7 +137,7 @@ function MetricsTab() {
             </motion.div>
           ))}
         </div>
-      ) : (
+      ) : view === "list" ? (
         <div className="space-y-2">
           {metrics.map((m, i) => (
             <motion.div
@@ -144,6 +158,59 @@ function MetricsTab() {
               </div>
             </motion.div>
           ))}
+        </div>
+      ) : (
+        /* Focus view — one hero metric + two supporting */
+        <div>
+          {/* Primary metric */}
+          <motion.div
+            key={`focus-${focusIdx}`}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            onClick={() => navigate(`/?slide=${primary.slide}`)}
+            className="bg-warm-glow rounded-2xl p-10 md:p-14 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 transition-all mb-4"
+          >
+            <p className="text-xs font-body text-muted-foreground uppercase tracking-widest mb-4">
+              {primary.label}
+            </p>
+            <p className={`font-display text-6xl md:text-7xl font-bold ${primary.color} mb-3`}>
+              {primary.value}
+            </p>
+            <p className="text-sm text-muted-foreground font-body">{primary.sub}</p>
+          </motion.div>
+
+          {/* Two sub-metrics */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {[sub1, sub2].map((m, i) => (
+              <motion.div
+                key={m.label}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 + i * 0.1, duration: 0.35 }}
+                onClick={() => navigate(`/?slide=${m.slide}`)}
+                className="bg-warm-glow rounded-xl p-5 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              >
+                <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-2">
+                  {m.label}
+                </p>
+                <p className={`font-display text-2xl font-bold ${m.color}`}>{m.value}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Cycle through metrics */}
+          <div className="flex justify-center gap-2">
+            {metrics.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setFocusIdx(i)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  i === focusIdx ? "bg-foreground scale-125" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
