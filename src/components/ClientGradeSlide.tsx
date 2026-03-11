@@ -28,7 +28,7 @@ const gradeBg: Record<string, string> = {
   D: "bg-behind/10",
 };
 
-export default function ClientGradeSlide({ clients }: ClientGradeSlideProps) {
+export default function ClientGradeSlide({ clients, isPaid = false }: ClientGradeSlideProps) {
   const sorted = [...clients].sort((a, b) => a.grade.localeCompare(b.grade));
 
   const getMomTake = () => {
