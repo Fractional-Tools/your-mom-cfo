@@ -24,13 +24,14 @@ const toneOptions: { mode: StoryTone; icon: typeof Sun; label: string }[] = [
 ];
 
 const Index = () => {
+  const { settings } = useSettings();
   const [searchParams] = useSearchParams();
   const initialSlide = Number(searchParams.get("slide") || 0);
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [isPaid, setIsPaid] = useState(false);
   const [tone, setTone] = useState<StoryTone>("balanced");
 
-  const expectedAtHalftime = 340000 * (182 / 365);
+  const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
   const totalSlides = 10;
