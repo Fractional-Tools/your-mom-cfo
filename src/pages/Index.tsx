@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Sun, AlertTriangle, Scale, Presentation } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
 import ProfileFooter from "@/components/ProfileFooter";
+import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
