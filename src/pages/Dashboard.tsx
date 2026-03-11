@@ -72,29 +72,80 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
   ],
 };
 
+type MetricsView = "cards" | "list";
+
 // ─── Metrics Tab ───
 function MetricsTab() {
   const navigate = useNavigate();
+  const [view, setView] = useState<MetricsView>("cards");
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {metrics.map((m, i) => (
-        <motion.div
-          key={m.label}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.08, duration: 0.4 }}
-          onClick={() => navigate(`/?slide=${m.slide}`)}
-          className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
+    <div>
+      {/* View toggle */}
+      <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 mb-5 w-fit">
+        <button
+          onClick={() => setView("cards")}
+          className={`p-1.5 rounded-full transition-all ${
+            view === "cards" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+          }`}
+          title="Card view"
         >
-          <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-3">
-            {m.label}
-          </p>
-          <p className={`font-display text-4xl md:text-5xl font-bold ${m.color}`}>
-            {m.value}
-          </p>
-        </motion.div>
-      ))}
+          <LayoutGrid className="w-3.5 h-3.5" />
+        </button>
+        <button
+          onClick={() => setView("list")}
+          className={`p-1.5 rounded-full transition-all ${
+            view === "list" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+          }`}
+          title="List view"
+        >
+          <List className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
+      {view === "cards" ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08, duration: 0.4 }}
+              onClick={() => navigate(`/?slide=${m.slide}`)}
+              className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-3">
+                {m.label}
+              </p>
+              <p className={`font-display text-4xl md:text-5xl font-bold ${m.color}`}>
+                {m.value}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.06, duration: 0.35 }}
+              onClick={() => navigate(`/?slide=${m.slide}`)}
+              className="flex items-center justify-between bg-warm-glow rounded-xl px-5 py-4 cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.01] active:scale-[0.99] transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <p className="text-sm font-body text-foreground font-medium">{m.label}</p>
+                <p className="text-xs text-muted-foreground">{m.sub}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <p className={`font-display text-2xl font-bold ${m.color}`}>{m.value}</p>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
