@@ -4,7 +4,7 @@ import { useSettings } from "@/hooks/use-settings";
 import { getAvatarSrc } from "@/lib/avatars";
 
 export default function IntroSlide() {
-  const { settings } = useSettings();
+  const { settings, pronoun } = useSettings();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-6 font-body">
