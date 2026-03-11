@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import type { StoryTone } from "@/types/tone";
 
 export interface AppSettings {
   name: string;
