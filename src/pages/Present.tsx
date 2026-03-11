@@ -132,6 +132,7 @@ const Present = () => {
       { name: "Bright Labs", months: 7, active: true },
       { name: "Cedar Health", months: 3, active: true },
     ]} isPaid={isPaid} tone={tone} />,
+    <CTASlide key="s-cta" />,
   ];
 
   return (
