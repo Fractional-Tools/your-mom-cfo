@@ -251,20 +251,6 @@ export default function Settings() {
               />
             </div>
 
-            <div>
-              <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">
-                Conferences / Year
-              </label>
-              <input
-                type="number"
-                min="0"
-                max="20"
-                value={conferences}
-                onChange={(e) => setConferences(e.target.value)}
-                className={inputClass}
-                placeholder="3"
-              />
-            </div>
 
             <div>
               <label className="block text-xs text-muted-foreground uppercase tracking-wide mb-2">

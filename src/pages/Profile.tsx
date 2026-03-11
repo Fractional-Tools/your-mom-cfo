@@ -15,7 +15,7 @@ export default function Profile() {
     { label: "Clients / year", value: "4–6" },
     { label: "Current clients", value: `${settings.concurrentClients}` },
     { label: "Revenue goal", value: `$${Math.round(settings.revenueGoal / 1000)}k / yr` },
-    { label: "Time off", value: `${settings.vacationWeeks} weeks + ${settings.conferences} conference${settings.conferences !== 1 ? "s" : ""}` },
+    { label: "Time off", value: `${settings.vacationWeeks} weeks` },
   ];
 
   return (
