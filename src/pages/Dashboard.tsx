@@ -74,6 +74,8 @@ const ACTIONS_BY_METRIC: Record<MetricId, Action[]> = {
 
 // ─── Metrics Tab ───
 function MetricsTab() {
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {metrics.map((m, i) => (
@@ -82,7 +84,8 @@ function MetricsTab() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08, duration: 0.4 }}
-          className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center"
+          onClick={() => navigate(`/?slide=${m.slide}`)}
+          className="bg-warm-glow rounded-2xl p-6 md:p-8 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-3">
             {m.label}
