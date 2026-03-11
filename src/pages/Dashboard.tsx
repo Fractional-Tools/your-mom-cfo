@@ -171,7 +171,7 @@ function MetricsTab() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-            onClick={() => navigate(`/?slide=${primary.slide}`)}
+            onClick={() => navigate(`/slides?slide=${primary.slide}`)}
             className="bg-warm-glow rounded-2xl p-10 md:p-14 text-center cursor-pointer hover:ring-2 hover:ring-foreground/10 transition-all mb-4"
           >
             <p className="text-xs font-body text-muted-foreground uppercase tracking-widest mb-4">
