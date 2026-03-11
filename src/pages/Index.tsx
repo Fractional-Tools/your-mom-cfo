@@ -51,23 +51,6 @@ const Index = () => {
           <Presentation className="w-3.5 h-3.5" />
           Present
         </Link>
-        {/* Tone switcher */}
-        <div className="flex items-center gap-1 bg-warm-glow rounded-full p-1 shadow-sm">
-          {toneOptions.map(({ mode, icon: Icon, label }) => (
-            <button
-              key={mode}
-              onClick={() => setTone(mode)}
-              className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded-full transition-all ${
-                tone === mode
-                  ? "bg-foreground text-background font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <Icon className="w-3 h-3" />
-              {label}
-            </button>
-          ))}
-        </div>
       </div>
       <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-warm-glow rounded-full px-4 py-2 shadow-sm">
         <button
