@@ -69,7 +69,7 @@ export default function Actions() {
       <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
-          <Link to="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/slides" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             ← Back to slides
           </Link>
           <Link to="/priorities" className="text-xs text-muted-foreground hover:text-foreground transition-colors">

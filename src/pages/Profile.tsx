@@ -1,32 +1,29 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { Presentation, LayoutDashboard, Play, Settings } from "lucide-react";
+import vacationIcon from "@/assets/vacation-icon.png";
 import ftLogo from "@/assets/ft-logo.png";
-import profilePhoto from "@/assets/profile-photo.jpg";
-
-const stats = [
-  { label: "Role", value: "Fractional CPO" },
-  { label: "Experience", value: "2 years fractional" },
-  { label: "Clients / year", value: "4–6" },
-  { label: "Current clients", value: "2.5 avg" },
-  { label: "Revenue goal", value: "$370k / yr" },
-  { label: "Time off", value: "4 weeks + 3 conferences" },
-];
+import { getAvatarSrc } from "@/lib/avatars";
+import { useSettings } from "@/hooks/use-settings";
 
 export default function Profile() {
+  const { settings, pronoun } = useSettings();
+
+  const stats = [
+    { label: "Role", value: settings.jobTitle.replace("Fractional ", "") },
+    { label: "Experience", value: `${settings.yearsFractional} year${settings.yearsFractional !== 1 ? "s" : ""} fractional` },
+    { label: "Clients / year", value: "4–6" },
+    { label: "Current clients", value: `${settings.concurrentClients}` },
+    { label: "Revenue goal", value: `$${Math.round(settings.revenueGoal / 1000)}k / yr` },
+    { label: "Time off", value: `${settings.vacationWeeks} weeks` },
+  ];
+
   return (
     <div className="min-h-screen bg-background p-6 md:p-10 font-body">
       <div className="max-w-xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Link>
-          <img src={ftLogo} alt="Fractional Tools" className="h-7 w-auto dark:invert" />
+        <div className="flex items-center justify-center mb-12">
+          <h2 className="font-display text-2xl text-foreground">{settings.profileTitle || "Your Fractional Report"}</h2>
         </div>
 
         {/* Photo + Name */}
@@ -37,12 +34,37 @@ export default function Profile() {
           className="flex flex-col items-center text-center mb-10"
         >
           <img
-            src={profilePhoto}
+            src={getAvatarSrc(settings.avatarId)}
             alt="Profile photo"
             className="w-28 h-28 rounded-full object-cover mb-5 ring-4 ring-warm-glow"
           />
-          <h1 className="font-display text-3xl text-foreground mb-1">Alex Reyes</h1>
-          <p className="text-muted-foreground text-sm">Fractional Chief Product Officer</p>
+          <h1 className="font-display text-3xl text-foreground mb-1">{settings.name}</h1>
+          <p className="text-muted-foreground text-sm mb-5">{settings.jobTitle}</p>
+
+          {/* Launch options */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/slides"
+              className="flex items-center gap-2 text-sm font-body bg-warm-glow hover:bg-muted text-foreground rounded-full px-5 py-2.5 transition-colors"
+            >
+              <Play className="w-4 h-4" />
+              View Slides
+            </Link>
+            <Link
+              to="/present"
+              className="flex items-center gap-2 text-sm font-body bg-foreground hover:bg-foreground/90 text-background rounded-full px-5 py-2.5 transition-colors"
+            >
+              <Presentation className="w-4 h-4" />
+              Present
+            </Link>
+            <Link
+              to="/dashboard"
+              className="flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              Dashboard
+            </Link>
+          </div>
         </motion.div>
 
         {/* Stats */}
@@ -60,8 +82,9 @@ export default function Profile() {
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 {s.label}
               </p>
-              <p className="font-display text-xl font-bold text-foreground">
+              <p className="font-display text-xl font-bold text-foreground flex items-center justify-center gap-1.5">
                 {s.value}
+                {s.label === "Time off" && <img src={vacationIcon} alt="Vacation" className="w-6 h-6" />}
               </p>
             </div>
           ))}
@@ -75,9 +98,9 @@ export default function Profile() {
           className="bg-warm-glow/50 rounded-xl p-6"
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Alex has spent two years as a fractional CPO, partnering with 4–6 companies per year
-            to shape product strategy without the overhead of a full-time hire. Currently splitting
-            time across ~2.5 clients, Alex brings focused, senior product leadership to each
+            {settings.name} works as a {settings.jobTitle.toLowerCase()}, partnering with companies
+            to shape product strategy without the overhead of a full-time hire. Currently working
+            with {settings.concurrentClients} clients, {pronoun.subject} brings focused, senior leadership to each
             engagement — helping teams ship faster and prioritize better.
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed mt-4">
@@ -86,6 +109,17 @@ export default function Profile() {
             fractional executives understand how their practice is performing at a glance.
           </p>
         </motion.div>
+
+        {/* Settings link */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/settings"
+            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Settings className="w-3.5 h-3.5" />
+            Customize
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 import ftLogo from "@/assets/ft-logo.png";
+import { useSettings } from "@/hooks/use-settings";
+import IntroSlide from "@/components/IntroSlide";
 import MomCFOSlide from "@/components/MomCFOSlide";
 import UtilizationSlide from "@/components/UtilizationSlide";
 import ContextSwitchSlide from "@/components/ContextSwitchSlide";
@@ -12,9 +14,11 @@ import ClientGradeSlide from "@/components/ClientGradeSlide";
 import VacationSlide from "@/components/VacationSlide";
 import GrowthSlide from "@/components/GrowthSlide";
 import EngagementSlide from "@/components/EngagementSlide";
+import CTASlide from "@/components/CTASlide";
 import type { StoryTone } from "@/types/tone";
 
-const STORY_TITLES = [
+const getStoryTitles = (firstName: string) => [
+  `Meet ${firstName}`,
   "The Big Picture",
   "Time Allocation",
   "Context Switching",
@@ -24,10 +28,12 @@ const STORY_TITLES = [
   "Time Off",
   "Growth Capacity",
   "Client Retention",
+  "Get Started",
 ];
 
 const Present = () => {
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -36,8 +42,8 @@ const Present = () => {
   const tone: StoryTone = "balanced";
   const isPaid = true;
 
-  const totalSlides = 9;
-  const expectedAtHalftime = 340000 * (182 / 365);
+  const totalSlides = 11;
+  const expectedAtHalftime = settings.revenueGoal * (182 / 365);
   const currentRevenue = Math.round(expectedAtHalftime * 1.1);
 
   const goNext = useCallback(() => {
@@ -104,7 +110,8 @@ const Present = () => {
   };
 
   const slides = [
-    <MomCFOSlide key="s0" targetRevenue={340000} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
+    <IntroSlide key="s-intro" />,
+    <MomCFOSlide key="s0" targetRevenue={settings.revenueGoal} currentRevenue={currentRevenue} dayOfYear={182} totalDays={365} isPaid={isPaid} tone={tone} />,
     <UtilizationSlide key="s1" currentRate={68} priorRate={61} period="month" billableHours={109} availableHours={160} isPaid={isPaid} tone={tone} />,
     <ContextSwitchSlide key="s2" hoursLostPerWeek={6.5} avgSwitchesPerDay={4} activeClients={3} costPerHour={200} isPaid={isPaid} tone={tone} />,
     <WorkBalanceSlide key="s3" offHoursPct={28} weekendHours={6} eveningHours={8} totalHoursThisWeek={48} isPaid={isPaid} tone={tone} />,
@@ -125,6 +132,7 @@ const Present = () => {
       { name: "Bright Labs", months: 7, active: true },
       { name: "Cedar Health", months: 3, active: true },
     ]} isPaid={isPaid} tone={tone} />,
+    <CTASlide key="s-cta" />,
   ];
 
   return (
@@ -141,7 +149,7 @@ const Present = () => {
           <div className="flex items-center gap-3 bg-foreground/5 backdrop-blur-md rounded-full px-6 py-2.5 border border-border/50">
             <span className="text-xs font-mono text-muted-foreground">{currentSlide + 1}/{totalSlides}</span>
             <span className="w-px h-4 bg-border" />
-            <span className="text-sm font-medium text-foreground">{STORY_TITLES[currentSlide]}</span>
+            <span className="text-sm font-medium text-foreground">{getStoryTitles(settings.name.split(" ")[0])[currentSlide]}</span>
           </div>
         </motion.div>
       </AnimatePresence>
